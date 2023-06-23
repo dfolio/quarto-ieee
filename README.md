@@ -1,4 +1,8 @@
-# IEEE Transaction (IEEE)
+# IEEE Transaction (quarto-ieee)
+
+## Overview
+
+`quarto-ieee` provide a [journal format](https://quarto.org/docs/journals/formats.html) for your [quarto](https://quarto.org/) documents.
 
 ## Creating a New Article
 
