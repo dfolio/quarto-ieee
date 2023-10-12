@@ -1,37 +1,281 @@
 ---
-title: Ieee Template
+title: A Sample Article Using `quarto-ieee` for IEEE Journal and Transactions
 format:
   ieee-pdf:
     keep-tex: true  
   ieee-html: default
 author:
-  - name: Sarah Malloc
-    affiliations:
-      - name: An Organization
-        department: The Department
-        address: 1 Main St
-        city: Boston
-        country: USA
-        postal-code: 02210-1022
-      - A second affilication
-    orcid: 0000-0000-0000-0000
-    email: sm@example.org
-    url: https://example.org/
-  - name: Eliza Dealloc
-    affiliations:
-      - Another Affiliation
+  name: David Folio
+  affiliations:
+    - name: INSA Centre Val de Loire
+      department: Laboratoire Prisme
+      city: Bourges
+      country: France
+      postal-code: 18800
+  orcid: 0000-0001-9430-6091
+  email: david.folio@insa-cvl.fr
+  url: https://dfolio.fr/
+  membership: "Member, IEEE"
+  attributes:
+    corresponding: true
+    note: "Template created June 23, 2023; revised October 11, 2023."
 abstract: |
-  This document is a template demonstrating the Ieee format.
-keywords: [template, demo]
+  This document describes the most common article elements and how to use the 
+  `quarto-ieee` class with LaTeX to produce files that are suitable for submission
+  to the IEEE.  
+  `quarto-ieee` can produce conference, journal, and technical note (correspondence) 
+  papers with a suitable choice of class options. 
+keywords: [IEEE, IEEEtran, journal, template]
 
 pageheader:
   left: Journal XXX, Month Year
-  right: 'Author et al.: '
-bibliography: bibliography.bib  
+  right: 'D. Folio:  A Sample Article Using quarto-ieee'
+bibliography: bibliography.bib
+
+citation: 
+  type: software
+  issued: 2023-06-23
+  url: https://github.com/dfolio/quarto-ieee
+  pdf-url: https://github.com/dfolio/quarto-ieee/template.pdf
 ---
 
-## Introduction {#sec-intro}
+# Introduction {#sec-intro}
 
-*TODO* Create a template that demonstrates the appearance, formatting, layout, and functionality of your format. Learn more about journal formats at <https://quarto.org/docs/journals/>.
+[T]{.IEEEPARstart}[his]{}
+file is intended to serve as a "sample article file"
+for IEEE journal papers produced under {{< latex >}} using `IEEEtran.cls` version 1.8b and later. 
+It is based on `bare_jrnl_new_sample4.tex` provided by IEEE Publication Technology, Staff and available from  <https://template-selector.ieee.org/>.
+The most common elements are covered in the simplified and updated instructions in `New_IEEEtran_how-to.pdf`.
+For less common elements you can refer back to the original `IEEEtran_HOWTO.pdf`. 
+It is assumed that the reader has a basic working knowledge of {{< latex >}} and of (Pandoc/Quarto)-markdown [@mittelbach2023latex; @MacFarlane_Pandoc; @Allaire_Quarto_2022].
 
 
+# The Design, Intent, and Limitations of the Templates
+
+The templates are intended to **approximate the final look and page length of the articles/papers**. 
+**They are NOT intended to be the final produced work that is displayed in print or on IEEEXplore^®^**.
+They will help to give the authors an approximation of the number of pages that will be in the final version. 
+
+Although most of the {{< latex >}} and `IEEEtran.cls` commands and environment are supported, 
+there are some limitations when trying to export to a format other than PDF.
+
+# Some random text
+For some of the remainder of this sample we will use dummy text to fill out paragraphs rather than use live text that may violate a copyright.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis cursus nisl eget tempor porta. Proin dapibus dictum quam a commodo. Mauris congue scelerisque eros a porta. Proin blandit nulla sapien, et pretium justo dictum non. Vivamus ultricies, elit eu posuere placerat, sapien est condimentum nisl, at tincidunt tortor dolor ac ligula. Suspendisse pulvinar libero quis eros finibus sodales. Vivamus mattis est eget imperdiet luctus. Morbi eget posuere metus. Nam egestas elit lectus, eu tincidunt odio viverra sed. Sed sit amet metus rutrum, ultricies elit in, finibus felis. Integer lobortis dui ante, eget placerat lorem laoreet eu.
+
+Nullam mi ligula, luctus a orci ut, tincidunt varius augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec sed sem risus. Nam eleifend ultrices elit, vitae posuere tellus interdum et. Nam id nisl at elit malesuada malesuada. Suspendisse viverra ipsum libero, vel pharetra sem maximus sed. Nunc vel est fringilla, rutrum diam eu, egestas quam. Vivamus lobortis blandit velit, commodo finibus mauris. Quisque vel lacus ipsum. Pellentesque quis nulla ipsum.
+
+Aenean in hendrerit quam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam tincidunt vehicula dignissim. In quis aliquet lectus, ac vestibulum elit. Quisque a magna viverra quam viverra faucibus. Nulla ornare tortor at mollis viverra. Curabitur vel porta dui. Etiam ipsum elit, egestas eget lacus nec, laoreet iaculis lacus. In iaculis risus ac tincidunt viverra. Maecenas tempor iaculis odio quis aliquet.
+\IEEEpubidadjcol
+Maecenas ac posuere turpis. Fusce est dui, dapibus sed odio eget, eleifend facilisis felis. Nam gravida varius enim, ornare tincidunt urna ullamcorper ut. Donec sit amet eros ac lacus placerat rutrum ut non dolor. Nulla tincidunt nunc massa, sed euismod dui feugiat vitae. Integer tempus risus rutrum tellus interdum, eu aliquet sapien rutrum. Nunc feugiat varius lacus sed laoreet. Integer euismod tellus nisi, id scelerisque sem sagittis eu. Suspendisse at orci vel neque varius tempor nec vitae odio. Integer elementum elementum fermentum. Morbi in turpis cursus, lacinia arcu et, semper orci.
+
+Proin pharetra eros tellus, condimentum tempor ex commodo sit amet. Aliquam nec nisl mattis erat convallis semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam suscipit metus at vehicula ultricies. Morbi quis ullamcorper sem. Nam gravida blandit lacus id imperdiet. Morbi lacinia libero risus, vel fringilla risus ullamcorper sed. Nulla in rutrum quam. Phasellus vitae ante eleifend, semper lorem faucibus, consectetur lorem. Proin sed urna quis nunc fringilla bibendum sed sed ipsum. Praesent et erat sed purus commodo blandit. Aliquam gravida consequat mi, a egestas tellus varius a. Donec eu nulla suscipit, feugiat eros commodo, euismod enim.
+
+Ipsum habitant inceptos volutpat cras nostra, proin commodo eget varius. Volutpat arcu praesent, nisi vulputate convallis inceptos consequat. Aenean
+hendrerit sociis congue nulla ultricies, at tempor sapien nullam ullamcorper. 
+
+
+
+
+# Some Common Elements
+## Sections and Subsections
+As stated in the `IEEEtran` template enumeration of section headings is desirable, but not required.
+When numbered, it should be consistent throughout the article, that is, all headings and all levels of section headings in the article should be enumerated. 
+Primary headings are designated with Roman numerals, secondary with capital letters, tertiary with Arabic numbers; and quaternary with lowercase letters. 
+References and Acknowledgment headings are unlike all other section headings in text. 
+They are never enumerated. 
+They are simply primary headings without labels, regardless of whether the other headings in the article are enumerated. 
+
+The following @sec-markdown shows some basic usage and capabilities of `quarto-ieee`.
+
+## Markdown basics {#sec-markdown}
+The reader can easily find many documentations on how to write using the Markdown syntax.
+The `quarto-ieee` template relies mainly on the Markdown markup supported by Quarto[^quarto-markdown], which is build based on Pandoc [@MacFarlane_Pandoc; @Allaire_Quarto_2022].
+Below are some basic examples of usage of Markdown markup.
+
+[^quarto-markdown]: See Quarto markdown basics at <https://quarto.org/docs/authoring/markdown-basics.html>.
+
+### Display equations
+To write equations use `$` delimiters for inline formula or `$$` for block one.
+To number the equations, it is recommended to use classic equation environments provided by {{< latex >}} and to use `\eqref{}` (or `\ref{}`) for cross-referencing.
+For example:
+\begin{equation}\label{eq:1}
+{{\chi}_a}=\text{diag}\left(\frac{{\chi}}{1+n_a{\chi}},\frac{{\chi}}{1+n_b{\chi}},\frac{{\chi}}{1+n_b{\chi}}\right),
+\end{equation}
+\begin{align}
+a & = b + c \label{eq:2} \\
+c & = d + e \label{eq:3}
+\end{align}
+
+\begin{equation}\label{eq:4}
+\begin{cases}
+    1&=n_a+2n_b \\
+    n_a&=\dfrac{1-{\varepsilon}^2}{2{\varepsilon}^3}\left(\log\left(\dfrac{1+{\varepsilon}}{1-{\varepsilon}}\right)-2{\varepsilon}\right)
+\end{cases}
+\end{equation}
+The above equation is cross-referenced as \eqref{eq:1}, \eqref{eq:2}, \eqref{eq:3} and \eqref{eq:4}.
+
+For now, avoid using the Quarto cross-references that use of `$$ $$` with `#eq-` label.
+It works properly only for PDF output, but there are some issues with HTML[^issues-2275] output.
+
+[^issues-2275]: <https://github.com/quarto-dev/quarto-cli/issues/2275>
+
+::: {.remark}
+`quarto-ieee` template also supports the [`mhchem`](https://ctan.org/pkg/mhchem) (for chemical equation) 
+and [`physics`](https://ctan.org/pkg/physics) (for flexible macros for typesetting equations) {{< latex >}} packages 
+and [Mathjax extensions](https://docs.mathjax.org/en/latest/input/tex/extensions/index.html).
+:::
+
+### Theorems, Proofs and Remarks
+To include a reference-able theorem, create a div with a `#thm-` label.
+A theorem name is specified  via the first heading in the block. 
+For example:
+
+::: {#thm-line}
+
+## Line
+
+The equation of any straight line, called a linear equation, can be written as:
+
+$$
+y = mx + b
+$$
+:::
+
+The theorem is cross-referenced as @thm-line.
+
+
+There are a number of theorem variations supported by [Quarto](https://quarto.org/docs/authoring/cross-references.html#theorems-and-proofs), each with their own label prefix:
+
+- `#thm-` for Theorem;
+- `#lem-` for Lemma;
+- `#cor-` for Corollary
+- `#prp-` for Proposition;
+- `#cnj-` for Conjecture;
+- `#def-` for Definition;
+- `#exm-` for Example;
+- `#exr-` for Exercise.
+
+
+The `proof`, `remark` and `solution` environments generally receive similar typesetting as theorems.
+However they are not numbered (and therefore cannot be cross-referenced). To create these environments just use them as the class name of a div such as:
+
+::: {.solution name="The solution"}
+An example of solution environment.
+:::
+
+
+
+### Figures
+
+It is recommended to use div block with `#fig-` label to embed your Figures.
+
+
+:::{#fig-1}
+![](fig1.png)
+
+An example of figure.
+:::
+
+
+:::{#fig-2  layout-ncol=2}
+![ ](fig1.png){#fig-2a}
+
+![ ](fig1.png){#fig-2b}
+
+An example with sub-figure.
+:::
+
+
+The figures is cross-referenced as @fig-2  and even the sub-figures as @fig-2b.
+
+:::{.remark}
+There is no markup for double-column floating figures.
+The only workaround is to change the environment of the `knitr` chunk option with ` #| fig.env: figure*`.
+:::
+
+```{r}
+#| label: fig-twocolumn
+#| fig.env: figure*
+#| fig-cap: "Example of double column floating figures (in PDF)."
+#| warning: false
+#| echo: false
+
+plot(cars)
+```
+
+
+### Tables
+
+For tables produced by executable code cells, include a label with a `#tbl-` prefix to make them cross-referenceable. 
+For example (same as the one provided by Quarto documentation):
+
+| Col1 | Col2 | Col3 |
+|------|------|------|
+| A    | B    | C    |
+| E    | F    | G    |
+| A    | G    | G    |
+
+: My Caption {#tbl-letters}
+
+::: {#tbl-panel layout-ncol=2}
+| Col1 | Col2 | Col3 |
+|------|------|------|
+| A    | B    | C    |
+| E    | F    | G    |
+| A    | G    | G    |
+
+: First Table {#tbl-first}
+
+| Col1 | Col2 | Col3 |
+|------|------|------|
+| A    | B    | C    |
+| E    | F    | G    |
+| A    | G    | G    |
+
+: Second Table {#tbl-second}
+
+Main Caption
+:::
+
+
+See @tbl-letters.
+See @tbl-panel for details, especially @tbl-second.
+
+<!-- \newpage -->
+
+
+# Conclusions
+The conclusion goes here.
+
+# Acknowledgment {-}
+This should be a simple paragraph before the References to
+thank those individuals and institutions who have supported
+your work on this article.
+
+
+[]{.appendix options="An Appendix"}
+
+
+Use `[]{.appendix options="An Appendix"}` markup if you have a single appendix.
+`IEEEtran` state that to do not use `\section{}` anymore after `\appendix`.
+
+# References {-}
+
+:::{#refs}
+:::
+
+\pagebreak[3]
+
+# Biography Section
+
+:::{.IEEEbiography options="\includegraphics{david-folio}" arguments="David Folio"}
+Use `IEEEbiography` div 
+with figure as  option and
+the author name as the argument followed by the biography text.
+:::
+
+:::{.IEEEbiographynophoto arguments="John Doe"}
+Use `IEEEbiographynophoto` div and the author name as the argument followed by the biography text.
+:::

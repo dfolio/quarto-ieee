@@ -5,19 +5,32 @@ quarto-required: ">=1.3.0"
 contributes:
   formats:
     common:
-      toc: false
       number-sections: true
+      csl: ieee-with-url.csl
+      shortcodes:
+        - fancy-text
       filters:
-        - ieee.lua
         - latex-environment
+        - ieee.lua
       environments:
         - IEEEbiography
         - IEEEbiographynophoto
+      commands:
+        - IEEEPARstart
+        - appendix
+        - ce
+      crossref:
+        chapters: false
+        eq-prefix:
+        eq-labels: (roman)
+        fig-prefix: Fig.
+      execute:
+        echo: false
     pdf:
-      keep-tex: true
       template: ieee-template.tex
-      include-in-header: header.tex
-      csl: ieee-with-url.csl
+      pdf-engine: pdflatex
+      keep-tex: true
+      toc: false
       cite-method: citeproc
       link-citations: true
       format-resources:
@@ -27,11 +40,12 @@ contributes:
         - "_author.tex"
         - "_affiliation.tex"
     html:
-      number-sections: true
       toc: true
       toc-location: left
-      csl: ieee-with-url.csl
       code-fold: true
       theme:
         - style.scss
+      include-in-header: mathjax.html
+      html-math-method:
+        method: mathjax
 

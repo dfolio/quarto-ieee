@@ -5,3 +5,6 @@
 .Ruserdata
 /.luarc.json
 quarto-ieee.Rproj
+template_files
+template.tex
+IEEEtran.cls
