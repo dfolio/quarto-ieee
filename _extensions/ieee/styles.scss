@@ -68,7 +68,7 @@ $body-bg:                   $white;
 
 // Style anchor elements.
 $link-color:                #069;
-$link-decoration:           none;
+//$link-decoration:           none;
 
 // scss-docs-start headings-variables
 $headings-font-family:        $font-family-serif;
@@ -78,236 +78,271 @@ $headings-color:              inherit !default;
 
 /*-- scss:rules --*/
 
-main.content section.level1{
-  p{
-    font-family: $font-family-serif;
-  }
-}
-
-
-h1{
-  font-family: $font-family-sans-serif;
-  opacity: 0.9;
-  font-weight: 400;
-  line-height: 1.3;
-  margin: 13px 0 25px;
-  padding: 13px 0 15px;
-  text-size-adjust: 100%;
-  word-wrap: break-word;
-  .header-section-number{
-    display: block;
-    font-size:21px;
-    font-weight: 700;
-    color: #0e70a0;
-    &::before{
-      content: "SECTION ";
-    }
-    &::after{
-      content: ".";
-    }
-  }
-  &::after{
-    content: "";
-    display: table;
-    clear: both;
-  }
-}
-
-h1.title {
-  font-family: $font-family-sans-serif-alt;
-  font-weight: 700;
-  line-height: 38px;
-  margin: 0;
-  padding: 6.4px 16px 12.8px;
-}
-
-h2 {
-  font-weight: 700;
-  line-height: 1.3;
-  margin: 0 0 0.1em;
-}
-h3 {
-  font-weight: 700;
-  line-height: 1.3;
-  margin: 0 0 0.1em;
-}
-
-
 .text-base-md {
   font-family: $font-family-sans-serif-alt;
   font-size: 18px!important;
   line-height: 30px!important
 }
+#quarto-document-content{
+  a{
+    color: $link-color;
+    &:not([href]), &:not([class]){
+      text-decoration: none;
+    }
+    &:hover{
+      text-decoration: $link-decoration;
+    }
+  }
+  h1{
+    font-family: $font-family-sans-serif;
+    opacity: 0.9;
+    font-weight: 400;
+    line-height: 1.3;
+    margin: 13px 0 25px;
+    padding: 13px 0 15px;
+    text-size-adjust: 100%;
+    word-wrap: break-word;
+    .header-section-number{
+      display: block;
+      font-size:21px;
+      font-weight: 700;
+      color: #0e70a0;
+      &::before{
+        content: "SECTION ";
+      }
+      &::after{
+        content: ".";
+      }
+    }
+    &::after{
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
+  h1.title {
+    font-family: $font-family-sans-serif-alt;
+    font-weight: 700;
+    line-height: 38px;
+    margin: 0;
+    padding: 6.4px 16px 12.8px;
+  }
 
-#title-block-header.quarto-title-block.default{
-  //font-family: $font-family-sans-serif-alt;
-  //font-size: 18px;
-  //line-height: 30px;
-  @extend .text-base-md ;
-  font-weight: 400;
+  h2, h3, h4, h5{
+    .header-section-number{color: #333;}
+  }
+  h2 {
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0 0 0.1em;
+  }
+  h3 {
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0 0 0.1em;
+  }
 
-  .quarto-subheader{
-    //padding: 0.25rem 1rem 0.25rem 0;
-    width:100%;
-    div.quarto-author-banner{
-      margin: 0;
-      div.quarto-author{
-        padding: $spacer/4 $spacer $spacer/4 0;
-        div.quarto-author-contents{
-          padding: 4px 16px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          .author-info{
-            a {
-              color: $link-color;
-              &:hover{
-                text-decoration: underline;
+  #title-block-header.quarto-title-block.default{
+    //font-family: $font-family-sans-serif-alt;
+    //font-size: 18px;
+    //line-height: 30px;
+    @extend .text-base-md ;
+    font-weight: 400;
+
+    .quarto-subheader{
+      //padding: 0.25rem 1rem 0.25rem 0;
+      width:100%;
+      div.quarto-author-banner{
+        margin: 0;
+        div.quarto-author{
+          padding: $spacer/4 $spacer $spacer/4 0;
+          div.quarto-author-contents{
+            padding: 4px 16px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            .author-info{
+              a {
+                color: $link-color;
+                &:hover{
+                  text-decoration: underline;
+                }
               }
             }
           }
         }
-      }
-      div.author-all{
-        font-weight: 700;
-        white-space: nowrap;
+        div.author-all{
+          font-weight: 700;
+          white-space: nowrap;
+        }
       }
     }
+    hr{
+      border-top: 2px solid $gray-300;
+      width:98%;
+      margin-left: $spacer;
+    }
   }
-  hr{
-    border-top: 2px solid $gray-300;
-    width:98%;
-    margin-left: $spacer;
-  }
-}
 
-section.quarto-abstract{
-  @extend .text-base-md ;
-  padding: $spacer/2 $spacer;
-  border-bottom: 2px solid $link-color;
-  div.quarto-abstract-block {
-    margin-bottom: 1em!important;
-    .abstract .abstract-title{
-      font-weight: 700;
-      text-transform: none;
-    }
-  }
-  div.funding{
-    strong{
+  .quarto-main-body{
+
+    section.quarto-abstract{
       @extend .text-base-md ;
+      padding: $spacer/2 $spacer;
+      border-bottom: 2px solid $link-color;
+      div.quarto-abstract-block {
+        margin-bottom: 1em!important;
+        .abstract .abstract-title{
+          font-weight: 700;
+          text-transform: none;
+        }
+      }
+      div.funding{
+        strong{
+          @extend .text-base-md ;
+        }
+        div.expand_caret {
+            display: inline-block;
+          /*transform: scale(1.6);
+          margin-left: 8px;
+          margin-top: -4px;*/
+        }
+        a[aria-expanded='true'] > div.expand_caret {
+            transform: rotate(90deg);
+        }
+        .funding-info {
+          padding: 0.6875rem 0 0 1.6875rem;
+        }
+      }
     }
-    div.expand_caret {
-        display: inline-block;
-      /*transform: scale(1.6);
-      margin-left: 8px;
-      margin-top: -4px;*/
+
+    div.quarto-body-content{
+      border-bottom: 1px solid #333;
+      section{
+        p{
+          font-family: $font-family-serif;
+          margin: 0 0 1.5em;
+        }
+        .quarto-figure{
+          font-size: 15px;
+          font-family: $font-family-sans-serif;
+          clear: both;
+          margin: 1em 0 2em;
+          figure{
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #c6c6c6;
+            p {
+              margin:0;
+              img{
+                margin: 0 auto;
+                max-width: 100%;
+                vertical-align: middle;
+                border: none;
+              }
+            }
+            figcaption{
+              color: #666;
+              line-height: 1.3;
+              border-bottom: 1px dotted #999;
+              padding: 8px 0;
+            }
+          }
+        }
+      }
     }
-    a[aria-expanded='true'] > div.expand_caret {
-        transform: rotate(90deg);
+    counter-reset: appendix;
+
+    .appendix{
+      @extend h1;
+      display: block;
+      counter-increment: appendix;
+
+      &:before{
+        display: block;
+        font-size: 21px;
+        font-weight: 700;
+        color: #0e70a0;
+        content: 'Appendix ' counter(appendix, upper-alpha);
+      }
+      &:after{
+        content: attr(data-options);
+      }
     }
-    .funding-info {
-      padding: 0.6875rem 0 0 1.6875rem;
+
+    #quarto-accordion{
+      @extend .text-base-md ;
+      border: none;
+      border-bottom: 1px solid #333;
+
+      div.accordion-item{
+        border: none;
+        &:not(first-child){
+          border-top: 1px solid #333;
+        }
+
+        div.accordion-header{
+          color: #333;
+          font-size: 1em;
+          padding: 0.5rem;
+          .accordion-button{
+            @extend .text-base-md ;
+            font-weight: 400;
+            color: #333;
+            &:not(collapsed){
+              box-shadow: none;
+            }
+          }
+        }
+        div.accordion-body{
+          padding: 0.8em;
+          div.accordion-authors{
+            &:not(:first-child){
+              padding-top: 1em;
+            }
+            &:not(:last-child){
+              padding-bottom: 1em;
+              border-bottom: 1px solid #ddd;
+            }
+            div.author-card{
+              display: block;
+              .author-photo {
+                max-width: 96%;
+                img{
+                  width:100%;
+                  border-radius: 0.5rem;
+                }
+              }
+            }
+          }
+          #references{
+            @extend .text-base-md ;
+            .csl-entry{
+              overflow-wrap: break-word;
+
+              &:not(:first-child){
+                padding-top: 1em;
+              }
+              &:not(:last-child){
+                padding-bottom: 1em;
+                border-bottom: 1px solid #dddddd;
+              }
+              .csl-right-inline{
+                padding: 0 1em;
+              }
+            }
+          }
+          .accordion-keywords{
+            ul li{
+              display: inline-flex;
+              padding-right: 5px;
+              list-style-type: none!important;
+
+            }
+          }
+        }
+      }
     }
   }
 }
-#quarto-document-content div.quarto-body-content{
-  border-bottom: 1px solid #333;
-  section{
-    p{
-      margin: 0 0 1.5em;
-    }
-    .quarto-figure{
-      font-size: 15px;
-      font-family: $font-family-sans-serif;
-      clear: both;
-      margin: 1em 0 2em;
-      figure{
-        display: flex;
-        flex-direction: column;
-        border: 1px solid #c6c6c6;
-        p {
-          margin:0;
-          img{
-            margin: 0 auto;
-            max-width: 100%;
-            vertical-align: middle;
-            border: none;
-          }
-        }
-        figcaption{
-          color: #666;
-          line-height: 1.3;
-          border-bottom: 1px dotted #999;
-          padding: 8px 0;
-        }
-      }
-    }
-  }
-}
 
-#quarto-accordion{
-  @extend .text-base-md ;
-  border: none;
-  border-bottom: 1px solid #333;
-
-  div.accordion-item{
-    border: none;
-    &:not(first-child){
-      border-top: 1px solid #333;
-    }
-
-    div.accordion-header{
-      color: #333;
-      font-size: 1em;
-      padding: 0.5rem;
-      .accordion-button{
-        @extend .text-base-md ;
-        font-weight: 400;
-        color: #333;
-        &:not(collapsed){
-          box-shadow: none;
-        }
-      }
-    }
-    div.accordion-body{
-      padding: 0.8em;
-      div.accordion-authors{
-        &:not(:first-child){
-          padding-top: 1em;
-        }
-        &:not(:last-child){
-          padding-bottom: 1em;
-          border-bottom: 1px solid #ddd;
-        }
-        div.author-card{
-          display: block;
-        }
-      }
-      #references{
-        @extend .text-base-md ;
-        .csl-entry{
-          overflow-wrap: break-word;
-
-          &:not(:first-child){
-            padding-top: 1em;
-          }
-          &:not(:last-child){
-            padding-bottom: 1em;
-            border-bottom: 1px solid #dddddd;
-          }
-          .csl-right-inline{
-            padding: 0 1em;
-          }
-        }
-      }
-      .accordion-keywords{
-        ul li{
-          display: inline-flex;
-          padding-right: 5px;
-          list-style-type: none!important;
-
-        }
-      }
-    }
-  }
-}

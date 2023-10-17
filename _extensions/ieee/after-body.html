@@ -8,14 +8,29 @@
     $for(by-author)$
       <div class="accordion-authors container">
       <div class="author-card"><div class="grid gap-0">
-        <div class="g-col-12">$author.html()$</div>
-        <div class="g-col-12">$for(by-author.affiliations)$$affiliation.tex()$$sep$, $endfor$</div>
-      </div></div>
+        $if(it.metadata.photo)$
+        <div class="author-photo g-col-3 pe-3">
+          <img src="$it.metadata.photo$" alt="Author image of $it.name.literal$">
+        </div>
+        <div class="g-col-9">
+          <div>$author.html()$</div>
+          <div>$for(by-author.affiliations)$$affiliation.tex()$$sep$, $endfor$</div>
+        </div>
+        $else$
+        <div class="g-col-12">
+          <div>$author.html()$</div>
+          <div>$for(by-author.affiliations)$$affiliation.tex()$$sep$, $endfor$</div>
+        </div>
+        $endif$
+      </div>
+      $if(it.metadata.bio)$<div>$it.metadata.bio$</div>$endif$
+      </div>
       </div>
      $endfor$
     </div>
   </div>
   $endif$
+
   $if(refs)$
   <div class="accordion-item container">
     <div class="accordion-header d-flex justify-content-between" id="heading-references" role="tab">
@@ -28,7 +43,6 @@
     </div>
   </div>
   $endif$
-
   $if(keywords)$
   <div class="accordion-item container">
     <div class="accordion-header d-flex justify-content-between" id="heading-keywords" role="tab">

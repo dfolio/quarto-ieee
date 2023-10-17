@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.450">
 
@@ -11,8 +10,7 @@
 <meta name="dcterms.date" content="2023-06-23">
 <meta name="keywords" content="IEEE, IEEEtran, journal, template">
 
-<title>A Sample Article Using quarto-ieee for IEEE Journal and Transactions</title>
-<style>
+<title>A Sample Article Using quarto-ieee for IEEE Journal and Transactions</title><style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -70,6 +68,30 @@ div.csl-indent {
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<meta name="citation_title" content="A Sample Article Using `quarto-ieee` for IEEE Journal and Transactions">
+<meta name="citation_abstract" content="This document describes the most common article elements and how to use the
+`quarto-ieee` class with LaTeX to produce files that are suitable for submission
+to the IEEE.
+`quarto-ieee` can produce conference, journal, and technical note (correspondence)
+papers with a suitable choice of class options.
+">
+<meta name="citation_keywords" content="IEEE,IEEEtran,journal,template">
+<meta name="citation_author" content="David Folio">
+<meta name="citation_author" content="John Doe">
+<meta name="citation_publication_date" content="2023-06-23">
+<meta name="citation_cover_date" content="2023-06-23">
+<meta name="citation_year" content="2023">
+<meta name="citation_online_date" content="2023-06-23">
+<meta name="citation_fulltext_html_url" content="https://github.com/dfolio/quarto-ieee">
+<meta name="citation_pdf_url" content="https://github.com/dfolio/quarto-ieee/template.pdf">
+<meta name="citation_language" content="en">
+<meta name="citation_firstpage" content="1">
+<meta name="citation_lastpage" content="3">
+<meta name="citation_journal_title" content="GitHUB">
+<meta name="citation_reference" content="citation_title=The LaTeX Companion;,citation_author=F. Mittelbach;,citation_author=U. Fischer;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_isbn=978-0-201-36300-5;,citation_series_title=Addison-Wesley Series on Tools et Techniques for Computer Typesetting;">
+<meta name="citation_reference" content="citation_title=Pandoc;,citation_author=John MacFarlane;,citation_author=Albert Krewinkel;,citation_author=Jesse Rosenthal;,citation_fulltext_html_url=https://github.com/jgm/pandoc;">
+<meta name="citation_reference" content="citation_title=Quarto;,citation_author=J. J. Allaire;,citation_author=Charles Teague;,citation_author=Carlos Scheidegger;,citation_author=Yihui Xie;,citation_author=Christophe Dervieux;,citation_publication_date=2022-01;,citation_cover_date=2022-01;,citation_year=2022;,citation_fulltext_html_url=https://github.com/quarto-dev/quarto-cli;,citation_doi=10.5281/zenodo.5960048;">
+<meta name="citation_reference" content="citation_title=On the Sliding Mode Control of Nonlinear Systems;,citation_author=Hebertt Sira-Ramírez;,citation_publication_date=1992-10-01;,citation_cover_date=1992-10-01;,citation_year=1992;,citation_issue=4;,citation_doi=10.1016/0167-6911(92)90069-5;,citation_issn=0167-6911;,citation_volume=19;,citation_journal_title=Systems &amp;amp;amp; Control Letters;,citation_journal_abbrev=Systems &amp;amp; Control Letters;">
 </head>
 
 <body>
@@ -81,7 +103,7 @@ div.csl-indent {
    
   <ul>
   <li><a href="#sec-intro" id="toc-sec-intro" class="nav-link active" data-scroll-target="#sec-intro"><span class="header-section-number">1</span> Introduction</a></li>
-  <li><a href="#the-design-intent-and-limitations-of-the-templates" id="toc-the-design-intent-and-limitations-of-the-templates" class="nav-link" data-scroll-target="#the-design-intent-and-limitations-of-the-templates"><span class="header-section-number">2</span> The Design, Intent, and Limitations of the Templates</a></li>
+  <li><a href="#the-design-intent-and-limitations-of-this-templates" id="toc-the-design-intent-and-limitations-of-this-templates" class="nav-link" data-scroll-target="#the-design-intent-and-limitations-of-this-templates"><span class="header-section-number">2</span> The Design, Intent, and Limitations of this Templates</a></li>
   <li><a href="#some-random-text" id="toc-some-random-text" class="nav-link" data-scroll-target="#some-random-text"><span class="header-section-number">3</span> Some random text</a></li>
   <li><a href="#some-common-elements" id="toc-some-common-elements" class="nav-link" data-scroll-target="#some-common-elements"><span class="header-section-number">4</span> Some Common Elements</a>
   <ul class="collapse">
@@ -96,8 +118,6 @@ div.csl-indent {
   </ul></li>
   <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions"><span class="header-section-number">5</span> Conclusions</a></li>
   <li><a href="#acknowledgment" id="toc-acknowledgment" class="nav-link" data-scroll-target="#acknowledgment">Acknowledgment</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  <li><a href="#biography-section" id="toc-biography-section" class="nav-link" data-scroll-target="#biography-section"><span class="header-section-number">6</span> Biography Section</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="template.pdf"><i class="bi bi-file-pdf"></i>PDF (ieee)</a></li></ul></div></nav>
 </div>
@@ -106,59 +126,93 @@ div.csl-indent {
 <main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default page-columns page-full" itemprop="headline">
-<div class="quarto-title page-columns page-full">
-  <div class="quarto-title column-body">
-  <h1 class="title" itemprop="headline">A Sample Article Using <code>quarto-ieee</code> for IEEE Journal and Transactions</h1>
-  
-  </div>
-</div>
+<div class="col-12 page-columns page-full">
+<div class="quarto-header page-columns page-full">
 
-<div class="quarto-title-meta by-author">
-    <div class="quarto-title-meta-contents">
-             <span class="author-info"><a href="https://dfolio.fr/" title="INSA Centre Val de Loire, Laboratoire Prisme, Unknown affiliation, ">David Folio</a>
-       <a href="https://orcid.org/0000-0001-9430-6091" class="quarto-title-author-orcid" target="orcid.widget" rel="me noopener noreferrer"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width: 1em; margin-inline-start: 0.5em" alt="ORCID iD icon"></a>
-        <i class="bi bi-person-gear" aria-label="corresponding author"></i>
-        </span>
-      ;        <span class="author-info">John Doe
-       
-        
-        </span>
-          </div>
+  <div class="quarto-title column-body">
+  <div class="container col">
+    <h1 class="title" itemprop="headline">A Sample Article Using <code>quarto-ieee</code> for IEEE Journal and Transactions</h1>
+    
+    <div class="container">
+    <div class="mb-3 mt-2 d-grid gap-3 d-md-flex">
+      
+      <a href="#citation" class="btn btn-outline-primary" role="button">Cite This</a>
+      
+    </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="quarto-subheader">
+  <div class="quarto-author-banner p-0">
+  <div class="d-flex align-items-center flex-nowrap">
+        <div class="quarto-author overflow-hidden">
+    <div class="d-flex flex-nowrap">
+      <div class="quarto-author-contents align-items-center text-truncate pe-0">
+        <span class="author-info"><a href="https://dfolio.fr/" title="INSA Centre Val de Loire, Laboratoire Prisme, Unknown affiliation, ">David Folio</a><a href="https://orcid.org/0000-0001-9430-6091" class="quarto-title-author-orcid px-1" target="orcid.widget" rel="me noopener noreferrer"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width: 1em; margin-inline-start: 0.5em" alt="ORCID iD icon"></a></span> ; <span class="author-info">John Doe</span> 
+      </div>
+    </div>
+    </div>
+    
+    <div class="d-none d-md-flex align-items-center">
+    <div class="author-all d-none d-md-block">
+      <a href="#authors" class="">All Authors</a>
+    </div>
+    </div>
+  </div>
+  </div>
+  </div>
+
 </div>
-<div>
-  <div class="abstract">
-    <div class="abstract-title">Abstract:</div>
+</div>
+<hr class="px-3 mt-2">
+</header>
+<div class="quarto-main-body container p-0">
+<section class="quarto-abstract d-flex">
+<div class="container">
+<div class="quarto-abstract-block d-flex row g-0">
+<div class="col-12">
+  <div class="abstract mb-3">
+    <strong class="abstract-title">Abstract:</strong>
     <p>This document describes the most common article elements and how to use the <code>quarto-ieee</code> class with LaTeX to produce files that are suitable for submission to the IEEE. <code>quarto-ieee</code> can produce conference, journal, and technical note (correspondence) papers with a suitable choice of class options.</p>
   </div>
-
+</div>
 </div>
 
-<div class="citation-meta published-in">
+<div class="citation-meta published-in pb-3">
 <strong class="citation-title">Published in:</strong> GitHUB
 (
 
 2023-06-23)
 
 </div>
-<div class="container d-md-block ">
-<div class="row">
-  <div class="col">
-    <div class="citation-meta"><strong class="citation-title">Page(s)::</strong>1-3</div>
-      <div class="citation-meta"><strong class="citation-title">Date of Publication: </strong>23 June 2023</div>  </div>
-  <div class="col">
+
+<div class="container g-0 pt-3">
+<div class="grid">
+  <div class="g-col-6">
+        <div class="citation-meta pb-3"><strong class="citation-title">Page(s):</strong> 1-3</div>
+            <div class="citation-meta pb-3"><strong class="citation-title">Date of Publication:</strong> 23 June 2023</div>  </div>
+  <div class="g-col-6">
+    
+    
+  </div>
+
   </div>
 </div>
-</div>
-</header>
 
+</div>
+</section>
+
+
+<div class="quarto-body-content">
 <section id="sec-intro" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
-<p><span class="IEEEPARstart">T</span><span>his</span> file is intended to serve as a “sample article file” for IEEE journal papers produced under <span class="math inline">\(\LaTeX\)</span> using <code>IEEEtran.cls</code> version 1.8b and later. It is based on <code>bare_jrnl_new_sample4.tex</code> provided by IEEE Publication Technology, Staff and available from <a href="https://template-selector.ieee.org/" class="uri">https://template-selector.ieee.org/</a>. The most common elements are covered in the simplified and updated instructions in <code>New_IEEEtran_how-to.pdf</code>. For less common elements you can refer back to the original <code>IEEEtran_HOWTO.pdf</code>. It is assumed that the reader has a basic working knowledge of <span class="math inline">\(\LaTeX\)</span> and of (Pandoc/Quarto)-markdown <span class="citation" data-cites="mittelbach2023latex MacFarlane_Pandoc Allaire_Quarto_2022"><a href="#ref-mittelbach2023latex" role="doc-biblioref">[1]</a>–<a href="#ref-Allaire_Quarto_2022" role="doc-biblioref">[3]</a></span>.</p>
+<p><span class="IEEEPARstart">T</span><span>his</span> file is intended to serve as a “sample article file” for IEEE journal papers produced under <span class="math inline">\(\LaTeX\)</span> using <code>IEEEtran.cls</code> version 1.8b and later. It is based on <code>bare_jrnl_new_sample4.tex</code> provided by IEEE Publication Technology, Staff and available from <a href="https://template-selector.ieee.org/" class="uri">https://template-selector.ieee.org/</a>. The most common elements are covered in the simplified and updated instructions in <code>New_IEEEtran_how-to.pdf</code>. For less common elements you can refer back to the original <code>IEEEtran_HOWTO.pdf</code>. It is assumed that the reader has a basic working knowledge of <span class="math inline">\(\LaTeX\)</span> <span class="citation" data-cites="mittelbach2023latex"><a href="#ref-mittelbach2023latex" role="doc-biblioref">[1]</a></span> and of (Pandoc/Quarto)-markdown [; <span class="citation" data-cites="MacFarlane_Pandoc"><a href="#ref-MacFarlane_Pandoc" role="doc-biblioref">[2]</a></span>; <span class="citation" data-cites="Allaire_Quarto_2022"><a href="#ref-Allaire_Quarto_2022" role="doc-biblioref">[3]</a></span>] markup.</p>
 </section>
-<section id="the-design-intent-and-limitations-of-the-templates" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> The Design, Intent, and Limitations of the Templates</h1>
-<p>The templates are intended to <strong>approximate the final look and page length of the articles/papers</strong>. <strong>They are NOT intended to be the final produced work that is displayed in print or on IEEEXplore<sup>®</sup></strong>. They will help to give the authors an approximation of the number of pages that will be in the final version.</p>
-<p>Although most of the <span class="math inline">\(\LaTeX\)</span> and <code>IEEEtran.cls</code> commands and environment are supported, there are some limitations when trying to export to a format other than PDF.</p>
+<section id="the-design-intent-and-limitations-of-this-templates" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> The Design, Intent, and Limitations of this Templates</h1>
+<p>The <code>quarto-ieee</code> templates are intended to <strong>approximate the final look and page length of the articles/papers</strong> either in PDF output or HTML output. <strong>They are NOT intended to be the final produced work that is displayed in print or on IEEEXplore<sup>®</sup></strong>. They will help to give the authors an approximation of the number of pages and layout that will be in the final version.</p>
+<p>Although most of the <span class="math inline">\(\LaTeX\)</span> and <code>IEEEtran.cls</code> commands and environment are supported, there are some limitations when trying to export to a format other than PDF (e.g.&nbsp;HTML output).</p>
 </section>
 <section id="some-random-text" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Some random text</h1>
@@ -230,7 +284,7 @@ y = mx + b
 <div id="fig-1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="fig1.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: An example of figure.</figcaption>
+<figcaption class="figure-caption">Fig.&nbsp;1: An example of figure.</figcaption>
 </figure>
 </div>
 <div id="fig-2" class="quarto-layout-panel">
@@ -253,7 +307,7 @@ y = mx + b
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2: An example with sub-figure.</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Fig.&nbsp;2: An example with sub-figure.</figcaption><p></p>
 </figure>
 </div>
 <p>The figures is cross-referenced as <a href="#fig-2">Fig.&nbsp;2</a> and even the sub-figures as <a href="#fig-2b">Fig.&nbsp;2 (b)</a>.</p>
@@ -265,7 +319,7 @@ y = mx + b
 <div id="fig-twocolumn" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="template_files/figure-html/fig-twocolumn-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;3: Example of double column floating figures (in PDF).</figcaption>
+<figcaption class="figure-caption">Fig.&nbsp;3: Example of double column floating figures (in PDF).</figcaption>
 </figure>
 </div>
 </div>
@@ -383,30 +437,78 @@ y = mx + b
 <p><span class="appendix" data-options="An Appendix"></span></p>
 <p>Use <code>[]{.appendix options="An Appendix"}</code> markup if you have a single appendix. <code>IEEEtran</code> state that to do not use <code>\section{}</code> anymore after <code>\appendix</code>.</p>
 </section>
-<section id="references" class="level1 unnumbered">
-<h1 class="unnumbered">References</h1>
-<div id="refs" class="references csl-bib-body" role="list">
-<div id="ref-mittelbach2023latex" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">F. Mittelbach and U. Fischer, <em>The <span>LaTeX</span> companion</em>, 3rd ed. <span>Addison Wesley Professional</span>, 2023. </div>
-</div>
-<div id="ref-MacFarlane_Pandoc" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">J. MacFarlane, A. Krewinkel, and J. Rosenthal, <span>“<span>Pandoc</span>.”</span> [Online]. Available: <a href="https://github.com/jgm/pandoc">https://github.com/jgm/pandoc</a></div>
-</div>
-<div id="ref-Allaire_Quarto_2022" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline">J. J. Allaire, C. Teague, C. Scheidegger, Y. Xie, and C. Dervieux, <span>“<span>Quarto</span>.”</span> Jan-2022 [Online]. Available: <a href="https://github.com/quarto-dev/quarto-cli">https://github.com/quarto-dev/quarto-cli</a></div>
-</div>
-</div>
-</section>
-<section id="biography-section" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Biography Section</h1>
-<div class="IEEEbiography" data-options="\includegraphics{david-folio}" data-arguments="David Folio">
-<p>Use <code>IEEEbiography</code> div with figure as option and the author name as the argument followed by the biography text.</p>
-</div>
-<div class="IEEEbiographynophoto" data-arguments="John Doe">
-<p>Use <code>IEEEbiographynophoto</code> div and the author name as the argument followed by the biography text.</p>
-</div>
-</section>
 
+</div>
+
+<div id="quarto-accordion" class="accordion d-none d-md-block" role="tablist">
+    <div class="accordion-item container" id="">
+    <div class="accordion-header d-flex justify-content-between" id="heading-author" role="tab">
+      <button id="authors" class="accordion-button p-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-authors" aria-expanded="false" aria-controls="collapse-authors">Authors</button>
+    </div>
+    <div id="collapse-authors" class="accordion-body collapse" aria-labelledby="heading-authors" data-bs-parent="#quarto-accordion" role="tabpanel">
+          <div class="accordion-authors container">
+      <div class="author-card"><div class="grid gap-0">
+                <div class="author-photo g-col-3 pe-3">
+          <img src="david-folio.png" alt="Author image of David Folio">
+        </div>
+        <div class="g-col-9">
+          <div><span class="author-info"><a href="https://dfolio.fr/" title="INSA Centre Val de Loire, Laboratoire Prisme, Unknown affiliation, ">David Folio</a><a href="https://orcid.org/0000-0001-9430-6091" class="quarto-title-author-orcid px-1" target="orcid.widget" rel="me noopener noreferrer"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width: 1em; margin-inline-start: 0.5em" alt="ORCID iD icon"></a></span></div>
+          <div>Laboratoire Prisme, INSA Centre Val de Loire, Bourges, 18800 France, Unknown affiliation</div>
+        </div>
+              </div>
+      <div><p>Use <code>IEEEbiography</code> with figure as option and the author name as the argument followed by the biography text.</p></div>
+      </div>
+      </div>
+           <div class="accordion-authors container">
+      <div class="author-card"><div class="grid gap-0">
+                <div class="g-col-12">
+          <div><span class="author-info">John Doe</span></div>
+          <div>Anonymous University</div>
+        </div>
+              </div>
+      <div><p>Use <code>IEEEbiographynophoto</code> and the author name as the argument followed by the biography text.</p></div>
+      </div>
+      </div>
+         </div>
+  </div>
+  
+    <div class="accordion-item container">
+    <div class="accordion-header d-flex justify-content-between" id="heading-references" role="tab">
+      <button id="authors" class="accordion-button p-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-references" aria-expanded="false" aria-controls="collapse-references">References</button>
+    </div>
+    <div id="collapse-references" class="accordion-body collapse" aria-labelledby="heading-references" data-bs-parent="#quarto-accordion" role="tabpanel">
+      <section id="references" class="accordion-references">
+        <div id="refs" class="references csl-bib-body" role="list">
+        <div id="ref-mittelbach2023latex" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[1] </div><div class="csl-right-inline">F. Mittelbach and U. Fischer, <em>The <span>LaTeX</span> companion</em>, 3rd ed. <span>Addison Wesley Professional</span>, 2023. </div>
+        </div>
+        <div id="ref-MacFarlane_Pandoc" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[2] </div><div class="csl-right-inline">J. MacFarlane, A. Krewinkel, and J. Rosenthal, <span>“<span>Pandoc</span>.”</span> [Online]. Available: <a href="https://github.com/jgm/pandoc">https://github.com/jgm/pandoc</a></div>
+        </div>
+        <div id="ref-Allaire_Quarto_2022" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[3] </div><div class="csl-right-inline">J. J. Allaire, C. Teague, C. Scheidegger, Y. Xie, and C. Dervieux, <span>“<span>Quarto</span>.”</span> Jan-2022 [Online]. Available: <a href="https://github.com/quarto-dev/quarto-cli">https://github.com/quarto-dev/quarto-cli</a></div>
+        </div>
+        </div>
+      </section>
+    </div>
+  </div>
+      <div class="accordion-item container">
+    <div class="accordion-header d-flex justify-content-between" id="heading-keywords" role="tab">
+      <button id="authors" class="accordion-button p-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-keywords" aria-expanded="false" aria-controls="collapse-keywords">Keywords</button>
+    </div>
+    <div id="collapse-keywords" class="accordion-body collapse" aria-labelledby="heading-keywords" data-bs-parent="#quarto-accordion" role="tabpanel">
+      <div class="accordion-keywords">
+        <strong>Author Keywords</strong>
+        <ul class="mt-3 p-0">
+                <li>IEEE, </li><li>IEEEtran, </li><li>journal, </li>
+        <li>template</li>
+                </ul>
+      </div>
+    </div>
+  </div>
+  
+</div>
+</div>
 
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
@@ -669,6 +771,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
