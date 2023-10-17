@@ -345,7 +345,7 @@ $if(by-author.affiliations)$
 $if(by-author.affiliations/first)$
 $for(by-author.affiliations/first)$
 \thanks{$by-author.name.literal$ is with $affiliation.tex()$%
-$if(by-author.attributes.corresponding)$$if(by-author.email)$ Corresponding author: $by-author.email$$endif$
+$if(by-author.attributes.corresponding)$$if(by-author.email)$  Corresponding author: $by-author.email$$endif$
 $else$$if(by-author.email)$ e-mail: $by-author.email$$endif$$endif$}
 $endfor$
 $if(by-author.affiliations/rest/first)$
@@ -366,7 +366,7 @@ $if(by-author.affiliations)$
 $if(by-author.affiliations/first)$
 $for(by-author.affiliations/first)$
 \thanks{$by-author.name.literal$ is with $affiliation.tex()$%
-$if(by-author.attributes.corresponding)$$if(by-author.email)$~Corresponding author: $by-author.email$$endif$
+$if(by-author.attributes.corresponding)$$if(by-author.email)$  Corresponding author: $by-author.email$$endif$
 $else$$if(by-author.email)$#e-mail: $by-author.email$$endif$$endif$}
 $endfor$
 $if(by-author.affiliations/rest/first)$

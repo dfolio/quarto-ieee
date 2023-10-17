@@ -20,7 +20,6 @@ author:
     membership: "Member, IEEE"
     attributes:
       corresponding: true
-      note: "Template created June 23, 2023; revised October 11, 2023."
     photo: david-folio.png
     bio: |
       Use `IEEEbiography`  with figure as  option and
@@ -31,6 +30,7 @@ author:
     bio: |
       Use `IEEEbiographynophoto` and the author name
       as the argument followed by the biography text.
+    note: "Template created June 23, 2023; revised October 17, 2023."
 abstract: |
   This document describes the most common article elements and how to use the 
   `quarto-ieee` class with LaTeX to produce files that are suitable for submission
@@ -61,7 +61,7 @@ for IEEE journal papers produced under {{< latex >}} using `IEEEtran.cls` versio
 It is based on `bare_jrnl_new_sample4.tex` provided by IEEE Publication Technology, Staff and available from  <https://template-selector.ieee.org/>.
 The most common elements are covered in the simplified and updated instructions in `New_IEEEtran_how-to.pdf`.
 For less common elements you can refer back to the original `IEEEtran_HOWTO.pdf`. 
-It is assumed that the reader has a basic working knowledge of {{< latex >}} @mittelbach2023latex and of (Pandoc/Quarto)-markdown [; @MacFarlane_Pandoc; @Allaire_Quarto_2022] markup.
+It is assumed that the reader has a basic working knowledge of {{< latex >}} @mittelbach2023latex and of (Pandoc/Quarto)-markdown [@MacFarlane_Pandoc; @Allaire_Quarto_2022] markup.
 
 
 # The Design, Intent, and Limitations of this Templates

@@ -2,10 +2,9 @@
 
 ## Overview
 
-`quarto-ieee` provide a [journal format](https://quarto.org/docs/journals/formats.html) for your [quarto](https://quarto.org/) documents.
-`quarto-ieee` use the `[IEEEtran.cls]` document class that is used for most IEEE transaction articles.
-
-*TODO*: An html template that reproduce the IEEE HTML style.
+`quarto-ieee` provide a `IEEEtran` template for [journal format](https://quarto.org/docs/journals/formats.html) with your [quarto](https://quarto.org/) documents.
+`quarto-ieee` use the `IEEEtran.cls` document class that is used for most IEEE transaction articles.
+It supports both `PDF` and `HTML` output.
 
 ## Creating a New Article
 
@@ -31,19 +30,33 @@ Then, add the format to your document options:
 
 ``` yaml
 format:
-  quarto-ieee-pdf: default
+  ieee-pdf: default
 ```
+
 
 ## Options
 
 Most basic `IEEEtran.cls` command are supported.
+There are some (few) limitations for the `HTML` output.
+
+For the  `HTML` output, `quarto-ieee` tries to mimic as closely as possible the layout seen on IEEEXplore^®^.
 
 ## Example
 
-Here is the source code for a minimal sample document: [template.qmd](template.qmd).
+The source code for a minimal sample document is given in [template.qmd](template.qmd).
 
 [IEEEtran.cls]: https://ctan.org/pkg/ieeetran "Document class for IEEE Transactions journals and conferences"
 
+
+You can view a preview of the rendered basic template at [template.pdf](template.pdf) or  [template.html](template.html).
+
 ## Unsuported feature
 
-- Several authors with same affiliation. In such case use note meta-data
+- Several authors with same affiliation. 
+  In such case use `note` and `tex-author-no-affiliation: true`
+- For `HTML` output
+  - The default Quarto toc is used, so the display is not the same as on IEEEXplore^®^.
+  - Footnote are put at the end of document, while on IEEEXplore^®^ there are placed in the accordion.
+  - Figures are not placed in the accordion.
+  - IEEEXplore^®^ specifics (e.g. citation metrics)
+  
