@@ -6,7 +6,6 @@ contributes:
   formats:
     common:
       number-sections: true
-      csl: ieee-with-url.csl
       shortcodes:
         - fancy-text
       filters:
@@ -23,7 +22,11 @@ contributes:
         chapters: false
         eq-prefix:
         eq-labels: (roman)
+        fig-title: Fig.
         fig-prefix: Fig.
+      csl: ieee-with-url.csl
+      cite-method: citeproc
+      link-citations: true
       execute:
         echo: false
     pdf:
@@ -31,21 +34,34 @@ contributes:
       pdf-engine: pdflatex
       keep-tex: true
       toc: false
-      cite-method: citeproc
-      link-citations: true
       format-resources:
         # Add here the resources required for the PDF rendering
         - IEEEtran.cls
       template-partials:
-        - "_author.tex"
-        - "_affiliation.tex"
+        - "author.tex"
+        - "affiliation.tex"
     html:
       toc: true
       toc-location: left
+      toc-title: "Document Sections"
       code-fold: true
       theme:
-        - style.scss
+        - styles.scss
+
+      template: template.html
+      template-partials:
+         - title-block.html
+         - title-metadata.html
+         - author.html
+         - after-body.html
+         - affiliation.tex
       include-in-header: mathjax.html
       html-math-method:
         method: mathjax
+      date-format: "D MMMM YYYY"
+
+      refs: |
+         ::: {#refs}
+         :::
+
 

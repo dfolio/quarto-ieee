@@ -5,20 +5,22 @@ format:
     keep-tex: true  
   ieee-html: default
 author:
-  name: David Folio
-  affiliations:
-    - name: INSA Centre Val de Loire
-      department: Laboratoire Prisme
-      city: Bourges
-      country: France
-      postal-code: 18800
-  orcid: 0000-0001-9430-6091
-  email: david.folio@insa-cvl.fr
-  url: https://dfolio.fr/
-  membership: "Member, IEEE"
-  attributes:
-    corresponding: true
-    note: "Template created June 23, 2023; revised October 11, 2023."
+  - name: David Folio
+    affiliations:
+      - name: INSA Centre Val de Loire
+        department: Laboratoire Prisme
+        city: Bourges
+        country: France
+        postal-code: 18800
+      - name: Unknown affiliation
+    orcid: 0000-0001-9430-6091
+    email: david.folio@insa-cvl.fr
+    url: https://dfolio.fr/
+    membership: "Member, IEEE"
+    attributes:
+      corresponding: true
+      note: "Template created June 23, 2023; revised October 11, 2023."
+  - name: John Doe
 abstract: |
   This document describes the most common article elements and how to use the 
   `quarto-ieee` class with LaTeX to produce files that are suitable for submission
@@ -31,8 +33,10 @@ pageheader:
   left: Journal XXX, Month Year
   right: 'D. Folio:  A Sample Article Using quarto-ieee'
 bibliography: bibliography.bib
-
+date: 2023-06-23
 citation: 
+  container-title: GitHUB
+  page: 1-3
   type: software
   issued: 2023-06-23
   url: https://github.com/dfolio/quarto-ieee
