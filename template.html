@@ -7,6 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="David Folio">
+<meta name="author" content="John Doe">
+<meta name="dcterms.date" content="2023-06-23">
 <meta name="keywords" content="IEEE, IEEEtran, journal, template">
 
 <title>A Sample Article Using quarto-ieee for IEEE Journal and Transactions</title>
@@ -75,7 +77,7 @@ div.csl-indent {
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
 <div id="quarto-sidebar-toc-left" class="sidebar toc-left">
   <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+    <h2 id="toc-title">Document Sections</h2>
    
   <ul>
   <li><a href="#sec-intro" id="toc-sec-intro" class="nav-link active" data-scroll-target="#sec-intro"><span class="header-section-number">1</span> Introduction</a></li>
@@ -101,42 +103,52 @@ div.csl-indent {
 </div>
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
 </div>
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">A Sample Article Using <code>quarto-ieee</code> for IEEE Journal and Transactions</h1>
+<header id="title-block-header" class="quarto-title-block default page-columns page-full" itemprop="headline">
+<div class="quarto-title page-columns page-full">
+  <div class="quarto-title column-body">
+  <h1 class="title" itemprop="headline">A Sample Article Using <code>quarto-ieee</code> for IEEE Journal and Transactions</h1>
+  
+  </div>
 </div>
 
-
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
+<div class="quarto-title-meta by-author">
     <div class="quarto-title-meta-contents">
-    <p class="author"><a href="https://dfolio.fr/">David Folio</a> <a href="https://orcid.org/0000-0001-9430-6091" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-  </div>
-    <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            INSA Centre Val de Loire
-          </p>
-      </div>
-    </div>
-
-<div class="quarto-title-meta">
-
-      
-  
-    
-  </div>
-  
+             <span class="author-info"><a href="https://dfolio.fr/" title="INSA Centre Val de Loire, Laboratoire Prisme, Unknown affiliation, ">David Folio</a>
+       <a href="https://orcid.org/0000-0001-9430-6091" class="quarto-title-author-orcid" target="orcid.widget" rel="me noopener noreferrer"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width: 1em; margin-inline-start: 0.5em" alt="ORCID iD icon"></a>
+        <i class="bi bi-person-gear" aria-label="corresponding author"></i>
+        </span>
+      ;        <span class="author-info">John Doe
+       
+        
+        </span>
+          </div>
+</div>
 <div>
   <div class="abstract">
-    <div class="abstract-title">Abstract</div>
+    <div class="abstract-title">Abstract:</div>
     <p>This document describes the most common article elements and how to use the <code>quarto-ieee</code> class with LaTeX to produce files that are suitable for submission to the IEEE. <code>quarto-ieee</code> can produce conference, journal, and technical note (correspondence) papers with a suitable choice of class options.</p>
   </div>
+
 </div>
 
+<div class="citation-meta published-in">
+<strong class="citation-title">Published in:</strong> GitHUB
+(
+
+2023-06-23)
+
+</div>
+<div class="container d-md-block ">
+<div class="row">
+  <div class="col">
+    <div class="citation-meta"><strong class="citation-title">Page(s)::</strong>1-3</div>
+      <div class="citation-meta"><strong class="citation-title">Date of Publication: </strong>23 June 2023</div>  </div>
+  <div class="col">
+  </div>
+</div>
+</div>
 </header>
 
 <section id="sec-intro" class="level1" data-number="1">
@@ -403,9 +415,10 @@ y = mx + b
 <li id="fn2"><p><a href="https://github.com/quarto-dev/quarto-cli/issues/2275" class="uri">https://github.com/quarto-dev/quarto-cli/issues/2275</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@software{folio2023,
-  author = {Folio, David},
+  author = {Folio, David and Doe, John},
   title = {A {Sample} {Article} {Using} `Quarto-Ieee` for {IEEE}
     {Journal} and {Transactions}},
+  pages = {1-3},
   date = {2023-06-23},
   url = {https://github.com/dfolio/quarto-ieee},
   langid = {en},
@@ -417,8 +430,9 @@ y = mx + b
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-folio2023" class="csl-entry quarto-appendix-citeas" role="listitem">
 <div class="">D.
-Folio, <span>“A Sample Article Using `quarto-ieee` for IEEE Journal and
-Transactions.”</span> 23-Jun-2023 [Online]. Available: <a href="https://github.com/dfolio/quarto-ieee">https://github.com/dfolio/quarto-ieee</a></div>
+Folio and J. Doe, <span>“A Sample Article Using `quarto-ieee` for IEEE
+Journal and Transactions,”</span> <em>GitHUB</em>. pp. 1–3, 23-Jun-2023
+[Online]. Available: <a href="https://github.com/dfolio/quarto-ieee">https://github.com/dfolio/quarto-ieee</a></div>
 </div></div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
