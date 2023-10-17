@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Karim Botros">
+<meta name="author" content="Mohammad Alkhatib">
+<meta name="author" content="David Folio">
+<meta name="author" content="Antoine Ferreira">
+<meta name="dcterms.date" content="2023-04-05">
+<meta name="keywords" content="Micro/nano robots, Medical robots and systems, deep learning methods.">
+
+<title>USMicroMagSet: Using Deep Learning Analysis to Benchmark the Performance of Microrobots in Ultrasound Images</title><style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="2023botrosRAL_files/libs/clipboard/clipboard.min.js"></script>
+<script src="2023botrosRAL_files/libs/quarto-html/quarto.js"></script>
+<script src="2023botrosRAL_files/libs/quarto-html/popper.min.js"></script>
+<script src="2023botrosRAL_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="2023botrosRAL_files/libs/quarto-html/anchor.min.js"></script>
+<link href="2023botrosRAL_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="2023botrosRAL_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="2023botrosRAL_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="2023botrosRAL_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="2023botrosRAL_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<!-- This is what works with Quarto -->
+<script>
+  MathJax = {
+    loader: {load: ['[tex]/mhchem', '[tex]/physics']},
+    tex: {
+      tags: 'ams',  // should be 'ams', 'none', or 'all'
+      packages: {'[+]': ['mhchem','physics']}
+    }
+  };
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<meta name="citation_title" content="USMicroMagSet: Using Deep Learning Analysis to Benchmark the Performance of Microrobots in Ultrasound Images">
+<meta name="citation_abstract" content="Microscale robots introduce great perspectives into many medical applications such as drug delivery, minimally invasive surgery, and localized biometric diagnostics. Fully automatic microrobots&amp;amp;#039; real-time detection and tracking using medical imagers are actually investigated for future clinical translation. Ultrasound  (US) B-mode imaging has been employed to monitor single agents and collective swarms of microrobots _in vitro_ and _ex vivo_ in controlled experimental conditions. However, low contrast and spatial resolution still limit the effective employment of such a method in a medical microrobotic scenario due to uncertainties associated with the position of microrobots. The positioning error arises due to the inaccuracy of the US-based visual feedback, which is provided by the detection and tracking algorithms. The application of deep learning networks is a promising solution to detect and track real-time microrobots in noisy ultrasonic images. However, what is most striking is the performance gap among state-of-the-art microrobots deep learning detection and tracking research. A key factor of that is the unavailability of large-scale datasets and benchmarks. In this paper, we present the first publicly available B-mode ultrasound dataset for microrobots (_USmicroMagSet_) with accurate annotations which contains more than 40000 samples of magnetic microrobots.
+In addition, for analyzing the performance of microrobots included in the proposed benchmark dataset, 4 deep learning detectors and 4 deep learning trackers are used.
+">
+<meta name="citation_keywords" content="Micro/nano robots,Medical robots and systems,deep learning methods.">
+<meta name="citation_author" content="Karim Botros">
+<meta name="citation_author" content="Mohammad Alkhatib">
+<meta name="citation_author" content="David Folio">
+<meta name="citation_author" content="Antoine  Ferreira">
+<meta name="citation_publication_date" content="2023-06">
+<meta name="citation_cover_date" content="2023-06">
+<meta name="citation_year" content="2023">
+<meta name="citation_online_date" content="2023-04-05">
+<meta name="citation_fulltext_html_url" content="https://ieeexplore.ieee.org/document/10093014">
+<meta name="citation_issue" content="6">
+<meta name="citation_doi" content="10.1109/LRA.2023.3264746">
+<meta name="citation_volume" content="8">
+<meta name="citation_language" content="en">
+<meta name="citation_firstpage" content="3254 ">
+<meta name="citation_lastpage" content=" 3261">
+<meta name="citation_journal_title" content="IEEE Robotics and Automation Letters">
+<meta name="citation_publisher" content="IEEE">
+<meta name="citation_reference" content="citation_title=Micro/Nanorobots for Biomedicine: Delivery, Surgery, Sensing, and Detoxification;,citation_author=Jinxing Li;,citation_author=B Esteban-Fernández Ávila;,citation_author=Wei Gao;,citation_author=Liangfang Zhang;,citation_author=Joseph Wang;,citation_publication_date=2017;,citation_cover_date=2017;,citation_year=2017;,citation_issue=4;,citation_volume=2;,citation_journal_title=Science Robotics;">
+<meta name="citation_reference" content="citation_title=Magnetically Controlled Soft Robotics Utilizing Elastomers and Gels in Actuation: A Review;,citation_author=Hyun-Joong Chung;,citation_author=Andrew M. Parsons;,citation_author=Lelin Zheng;,citation_publication_date=2021;,citation_cover_date=2021;,citation_year=2021;,citation_issue=3;,citation_doi=10.1002/aisy.202000186;,citation_issn=2640-4567;,citation_volume=3;,citation_journal_title=Advanced Intelligent Systems;">
+<meta name="citation_reference" content="citation_title=Imaging Technologies for Biomedical Micro- and Nanoswimmers;,citation_author=Salvador Pané;,citation_author=Josep Puigmartí-Luis;,citation_author=Christos Bergeles;,citation_author=Xiang-Zhong Chen;,citation_author=Eva Pellicer;,citation_author=Jordi Sort;,citation_author=Vanda Počepcová;,citation_author=Antoine Ferreira;,citation_author=Bradley J. Nelson;,citation_publication_date=2019;,citation_cover_date=2019;,citation_year=2019;,citation_issue=4;,citation_doi=10.1002/admt.201800575;,citation_issn=2365-709X;,citation_volume=4;,citation_journal_title=Advanced Materials Technologies;">
+<meta name="citation_reference" content="citation_title=Magnetic Motion Control and Planning of Untethered Soft Grippers Using Ultrasound Image Feedback;,citation_author=Stefano Scheggi;,citation_author=Krishna Kumar T. Chandrasekar;,citation_author=ChangKyu Yoon;,citation_author=Ben Sawaryn;,citation_author=Gert Steeg;,citation_author=David H. Gracias;,citation_author=Sarthak Misra;,citation_publication_date=2017-05;,citation_cover_date=2017-05;,citation_year=2017;,citation_doi=10.1109/ICRA.2017.7989730;,citation_conference_title=2017 IEEE International Conference on Robotics and Automation (ICRA);">
+<meta name="citation_reference" content="citation_title=Mechanical Rubbing of Blood Clots Using Helical Robots Under Ultrasound Guidance;,citation_author=Islam S. M. Khalil;,citation_author=Dalia Mahdy;,citation_author=Ahmed El Sharkawy;,citation_author=Ramez R. Moustafa;,citation_author=Ahmet Fatih Tabak;,citation_author=Mohamed E. Mitwally;,citation_author=Sarah Hesham;,citation_author=Nabila Hamdi;,citation_author=Anke Klingner;,citation_author=Abdelrahman Mohamed;,citation_author=Metin Sitti;,citation_publication_date=2018-04;,citation_cover_date=2018-04;,citation_year=2018;,citation_issue=2;,citation_doi=10.1109/LRA.2018.2792156;,citation_issn=2377-3766;,citation_volume=3;,citation_journal_title=IEEE Robotics and Automation Letters;">
+<meta name="citation_reference" content="citation_title=Small-Scale Soft-Bodied Robot with Multimodal Locomotion;,citation_author=Wenqi Hu;,citation_author=Guo Zhan Lum;,citation_author=Massimo Mastrangeli;,citation_author=Metin Sitti;,citation_publication_date=2018-02;,citation_cover_date=2018-02;,citation_year=2018;,citation_issue=7690;,citation_doi=10.1038/nature25443;,citation_issn=1476-4687;,citation_volume=554;,citation_journal_title=Nature;,citation_publisher=Nature Publishing Group;">
+<meta name="citation_reference" content="citation_title=Detection and Tracking of Multiple Microbubbles in Ultrasound B-Mode Images;,citation_author=Dimitri Ackermann;,citation_author=Georg Schmitz;,citation_publication_date=2016-01;,citation_cover_date=2016-01;,citation_year=2016;,citation_issue=1;,citation_doi=10.1109/TUFFC.2015.2500266;,citation_issn=1525-8955;,citation_volume=63;,citation_journal_title=IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control;">
+<meta name="citation_reference" content="citation_title=A Kalman Filter-Based Kernelized Correlation Filter Algorithm for Pose Measurement of a Micro-Robot;,citation_author=Heng Zhang;,citation_author=Hongwu Zhan;,citation_author=Libin Zhang;,citation_author=Fang Xu;,citation_author=Xinbin Ding;,citation_publication_date=2021-07;,citation_cover_date=2021-07;,citation_year=2021;,citation_issue=7, 7;,citation_doi=10.3390/mi12070774;,citation_issn=2072-666X;,citation_volume=12;,citation_journal_title=Micromachines;,citation_publisher=Multidisciplinary Digital Publishing Institute;">
+<meta name="citation_reference" content="citation_title=Deep Learning-based 3D Magnetic Microrobot Tracking Using 2D MR Images;,citation_author=Mehmet Efe Tiryaki;,citation_author=Sinan Ozgun Demir;,citation_author=Metin Sitti;,citation_publication_date=2022-07;,citation_cover_date=2022-07;,citation_year=2022;,citation_issue=3;,citation_doi=10.1109/LRA.2022.3179509;,citation_issn=2377-3766;,citation_volume=7;,citation_journal_title=IEEE Robotics and Automation Letters;">
+<meta name="citation_reference" content="citation_title=Magnetic-Based Closed-Loop Control of Paramagnetic Microparticles Using Ultrasound Feedback;,citation_author=Islam S. M. Khalil;,citation_author=Pedro Ferreira;,citation_author=Ricardo Eleutério;,citation_author=Chris L. Korte;,citation_author=Sarthak Misra;,citation_publication_date=2014;,citation_cover_date=2014;,citation_year=2014;,citation_doi=10.1109/ICRA.2014.6907411;,citation_issn=1050-4729;,citation_conference_title=2014 IEEE International Conference on Robotics and Automation (ICRA);">
+<meta name="citation_reference" content="citation_title=Ultrasound Tracking of the Acoustically Actuated Microswimmer;,citation_author=Qiyang Chen;,citation_author=Fang-Wei Liu;,citation_author=Zunding Xiao;,citation_author=Nitin Sharma;,citation_author=Sung Kwon Cho;,citation_author=Kang Kim;,citation_publication_date=2019;,citation_cover_date=2019;,citation_year=2019;,citation_issue=11;,citation_doi=10.1109/TBME.2019.2902523;,citation_volume=66;,citation_journal_title=IEEE Transactions on Biomedical Engineering;">
+<meta name="citation_reference" content="citation_title=Magnetic Control of Self-Propelled Microjets under Ultrasound Image Guidance;,citation_author=Alonso Sánchez;,citation_author=Veronika Magdanz;,citation_author=Oliver G. Schmidt;,citation_author=Sarthak Misra;,citation_publication_date=2014;,citation_cover_date=2014;,citation_year=2014;,citation_doi=10.1109/BIOROB.2014.6913771;,citation_issn=2155-1774;,citation_journal_title=IEEE RAS/EMBS International Conference on Biomedical Robotics and Biomechatronics;">
+<meta name="citation_reference" content="citation_title=IRONSperm: Sperm-templated Soft Magnetic Microrobots;,citation_author=Veronika Magdanz;,citation_author=Islam S. M. Khalil;,citation_author=Juliane Simmchen;,citation_author=Guilherme P. Furtado;,citation_author=Sumit Mohanty;,citation_author=Johannes Gebauer;,citation_author=Haifeng Xu;,citation_author=Anke Klingner;,citation_author=Azaam Aziz;,citation_author=Mariana Medina-Sánchez;,citation_author=Oliver G. Schmidt;,citation_author=Sarthak Misra;,citation_publication_date=2020-07-08;,citation_cover_date=2020-07-08;,citation_year=2020;,citation_issue=28;,citation_doi=10.1126/sciadv.aba5855;,citation_volume=6;,citation_journal_title=Science Advances;,citation_publisher=American Association for the Advancement of Science;">
+<meta name="citation_reference" content="citation_title=Real-Time Imaging and Tracking of Microrobots in Tissues Using Ultrasound Phase Analysis;,citation_author=S. Pane;,citation_author=V. Iacovacci;,citation_author=E. Sinibaldi;,citation_author=A. Menciassi;,citation_publication_date=2021-01-06;,citation_cover_date=2021-01-06;,citation_year=2021;,citation_issue=1;,citation_doi=10.1063/5.0032969;,citation_issn=0003-6951;,citation_volume=118;,citation_journal_title=Applied Physics Letters;,citation_journal_abbrev=Applied Physics Letters;">
+<meta name="citation_reference" content="citation_title=Real-Time Magnetic Navigation of a Rotating Colloidal Microswarm Under Ultrasound Guidance;,citation_author=Qianqian Wang;,citation_author=Lidong Yang;,citation_author=Jiangfan Yu;,citation_author=Philip Wai Yan Chiu;,citation_author=Yong-Ping Zheng;,citation_author=Li Zhang;,citation_publication_date=2020-12;,citation_cover_date=2020-12;,citation_year=2020;,citation_issue=12;,citation_doi=10.1109/TBME.2020.2987045;,citation_issn=1558-2531;,citation_volume=67;,citation_journal_title=IEEE Transactions on Biomedical Engineering;">
+<meta name="citation_reference" content="citation_title=Ultrasound Doppler-guided Real-Time Navigation of a Magnetic Microswarm for Active Endovascular Delivery;,citation_author=Qianqian Wang;,citation_author=Kai Fung Chan;,citation_author=Kathrin Schweizer;,citation_author=Xingzhou Du;,citation_author=Dongdong Jin;,citation_author=Simon Chun Ho Yu;,citation_author=Bradley J. Nelson;,citation_author=Li Zhang;,citation_publication_date=2021-02-26;,citation_cover_date=2021-02-26;,citation_year=2021;,citation_issue=9;,citation_doi=10.1126/sciadv.abe5914;,citation_volume=7;,citation_journal_title=Science Advances;,citation_publisher=American Association for the Advancement of Science;">
+<meta name="citation_reference" content="citation_title=Capsule Robot Pose and Mechanism State Detection in Ultrasound Using Attention-Based Hierarchical Deep Learning;,citation_author=Xiaoyun Liu;,citation_author=Daniel Esser;,citation_author=Brandon Wagstaff;,citation_author=Anna Zavodni;,citation_author=Naomi Matsuura;,citation_author=Jonathan Kelly;,citation_author=Eric Diller;,citation_publication_date=2022-12-07;,citation_cover_date=2022-12-07;,citation_year=2022;,citation_issue=1, 1;,citation_doi=10.1038/s41598-022-25572-w;,citation_issn=2045-2322;,citation_volume=12;,citation_journal_title=Scientific Reports;,citation_journal_abbrev=Sci Rep;,citation_publisher=Nature Publishing Group;">
+<meta name="citation_reference" content="citation_title=Fully Automatic and Real-Time Microrobot Detection and Tracking Based on Ultrasound Imaging Using Deep Learning;,citation_author=Karim Botross;,citation_author=Mohammad Alkhatib;,citation_author=David Folio;,citation_author=Antoine FERREIRA;,citation_publication_date=2022-07-12;,citation_cover_date=2022-07-12;,citation_year=2022;,citation_doi=10.1109/ICRA46639.2022.9812114;,citation_conference_title=IEEE Conference on Robotics and Automation (ICRA);,citation_conference=IEEE;">
+<meta name="citation_reference" content="citation_title=Octomag: An Electromagnetic System for 5-DOF Wireless Micromanipulation;,citation_author=Michael Philipp Kummer;,citation_author=Jake J. Abbott;,citation_author=Bradley E. Kratochvil;,citation_author=Ruedi Borer;,citation_author=Ali Sengul;,citation_author=Bradley J. Nelson;,citation_publication_date=2010;,citation_cover_date=2010;,citation_year=2010;,citation_issue=6;,citation_doi=10.1109/TRO.2010.2073030;,citation_issn=15523098;,citation_volume=26;,citation_journal_title=IEEE Transactions on Robotics;">
+<meta name="citation_reference" content="citation_title=Steering of Aggregating Magnetic Microparticles Using Propulsion Gradients Coils in an MRI Scanner;,citation_author=Jean-Baptiste Mathieu;,citation_author=Sylvain Martel;,citation_publication_date=2010;,citation_cover_date=2010;,citation_year=2010;,citation_issue=5;,citation_doi=10.1002/mrm.22279;,citation_issn=1522-2594;,citation_volume=63;,citation_journal_title=Magnetic Resonance in Medicine;">
+<meta name="citation_reference" content="citation_title=Electromagnetic Steering of a Magnetic Cylindrical Microrobot Using Optical Feedback Closed-Loop Control;,citation_author=Ali Ghanbari;,citation_author=Pyung H. Chang;,citation_author=Bradley J. Nelson;,citation_author=Hongsoo Choi;,citation_publication_date=2014-04-03;,citation_cover_date=2014-04-03;,citation_year=2014;,citation_issue=2;,citation_doi=10.1080/15599612.2014.901454;,citation_issn=1559-9612;,citation_volume=8;,citation_journal_title=International Journal of Optomechatronics;,citation_publisher=Taylor &amp;amp;amp; Francis;">
+<meta name="citation_reference" content="citation_title=3-D Visual Servoing of Magnetic Miniature Swimmers Using Parallel Mobile Coils;,citation_author=Zhengxin Yang;,citation_author=Lidong Yang;,citation_author=Li Zhang;,citation_publication_date=2020-11;,citation_cover_date=2020-11;,citation_year=2020;,citation_issue=4;,citation_doi=10.1109/TMRB.2020.3033020;,citation_issn=2576-3202;,citation_volume=2;,citation_journal_title=IEEE Transactions on Medical Robotics and Bionics;">
+<meta name="citation_reference" content="citation_title=Small-Scale Soft-Bodied Robot with Multimodal Locomotion;,citation_author=Wenqi Hu;,citation_author=Guo Zhan Lum;,citation_author=Massimo Mastrangeli;,citation_author=Metin Sitti;,citation_publication_date=2018-02;,citation_cover_date=2018-02;,citation_year=2018;,citation_issue=7690, 7690;,citation_doi=10.1038/nature25443;,citation_issn=1476-4687;,citation_volume=554;,citation_journal_title=Nature;,citation_publisher=Nature Publishing Group;">
+<meta name="citation_reference" content="citation_title=Design of Microscale Magnetic Tumbling Robots for Locomotion in Multiple Environments and Complex Terrains;,citation_author=Chenghao Bi;,citation_author=Maria Guix;,citation_author=Benjamin V. Johnson;,citation_author=Wuming Jing;,citation_author=David J. Cappelleri;,citation_publication_date=2018-02;,citation_cover_date=2018-02;,citation_year=2018;,citation_issue=2, 2;,citation_doi=10.3390/mi9020068;,citation_issn=2072-666X;,citation_volume=9;,citation_journal_title=Micromachines;,citation_publisher=Multidisciplinary Digital Publishing Institute;">
+<meta name="citation_reference" content="citation_title=Paramagnetic Microparticles Sliding on a Surface: Characterization and Closed-Loop Motion Control;,citation_author=Kareem Youakim;,citation_author=Mohamed Ehab;,citation_author=Omar Hatem;,citation_author=Sarthak Misra;,citation_author=Islam S. M. Khalil;,citation_publication_date=2015-05;,citation_cover_date=2015-05;,citation_year=2015;,citation_doi=10.1109/ICRA.2015.7139768;,citation_issn=1050-4729;,citation_conference_title=2015 IEEE International Conference on Robotics and Automation (ICRA);">
+<meta name="citation_reference" content="citation_title=Propulsion Mechanism of Flexible Microbead Swimmers in the Low Reynolds Number Regime;,citation_author=Yan-Hom Li;,citation_author=Shao-Chun Chen;,citation_publication_date=2020-12;,citation_cover_date=2020-12;,citation_year=2020;,citation_issue=12, 12;,citation_doi=10.3390/mi11121107;,citation_issn=2072-666X;,citation_volume=11;,citation_journal_title=Micromachines;,citation_publisher=Multidisciplinary Digital Publishing Institute;">
+<meta name="citation_reference" content="citation_title=Comparative Analysis of Deep Learning Image Detection Algorithms;,citation_author=Shrey Srivastava;,citation_author=Amit Vishvas Divekar;,citation_author=Chandu Anilkumar;,citation_author=Ishika Naik;,citation_author=Ved Kulkarni;,citation_author=V. Pattabiraman;,citation_publication_date=2021-05-10;,citation_cover_date=2021-05-10;,citation_year=2021;,citation_issue=1;,citation_doi=10.1186/s40537-021-00434-w;,citation_issn=2196-1115;,citation_volume=8;,citation_journal_title=Journal of Big Data;,citation_journal_abbrev=Journal of Big Data;">
+<meta name="citation_reference" content="citation_title=Deep Learning for Visual Tracking: A Comprehensive Survey;,citation_author=Seyed Mojtaba Marvasti-Zadeh;,citation_author=Li Cheng;,citation_author=Hossein Ghanei-Yakhdan;,citation_author=Shohreh Kasaei;,citation_publication_date=2022-05;,citation_cover_date=2022-05;,citation_year=2022;,citation_issue=5;,citation_doi=10.1109/TITS.2020.3046478;,citation_issn=1558-0016;,citation_volume=23;,citation_journal_title=IEEE Transactions on Intelligent Transportation Systems;">
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Document Sections</h2>
+   
+  <ul>
+  <li><a href="#sec-intro" id="toc-sec-intro" class="nav-link active" data-scroll-target="#sec-intro"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#microrobot-benchmarking" id="toc-microrobot-benchmarking" class="nav-link" data-scroll-target="#microrobot-benchmarking"><span class="header-section-number">2</span> Microrobot Benchmarking</a>
+  <ul class="collapse">
+  <li><a href="#classes" id="toc-classes" class="nav-link" data-scroll-target="#classes"><span class="header-section-number">2.1</span> Classes</a></li>
+  <li><a href="#microrobot-principle" id="toc-microrobot-principle" class="nav-link" data-scroll-target="#microrobot-principle"><span class="header-section-number">2.2</span> Microrobot principle</a>
+  <ul class="collapse">
+  <li><a href="#steering-magnetic-field-smf-class" id="toc-steering-magnetic-field-smf-class" class="nav-link" data-scroll-target="#steering-magnetic-field-smf-class"><span class="header-section-number">2.2.1</span> Steering magnetic field (SMF) class</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2023botrosRAL.pdf"><i class="bi bi-file-pdf"></i>PDF (ieee)</a></li></ul></div></nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</div>
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full" itemprop="headline">
+<div class="col-12 page-columns page-full">
+<div class="quarto-header page-columns page-full">
+
+  <div class="quarto-title column-body">
+  <div class="container col">
+    <h1 class="title" itemprop="headline">USMicroMagSet: Using Deep Learning Analysis to Benchmark the Performance of Microrobots in Ultrasound Images</h1>
+    
+    <div class="container">
+    <div class="mb-3 mt-2 d-grid gap-3 d-md-flex">
+      <span class="publisher btn text-success"><strong>Publisher:</strong> IEEE</span>
+      <a href="#citation" class="btn btn-outline-primary" role="button">Cite This</a>
+      <a href="2023botrosRAL.pdf" class="btn btn-danger .text-white" role="button"><i class="bi bi-file-pdf" rel="img" aria-label="PDF"></i>PDF</a>
+    </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="quarto-subheader">
+  <div class="quarto-author-banner p-0">
+  <div class="d-flex align-items-center flex-nowrap">
+        <div class="quarto-author overflow-hidden">
+    <div class="d-flex flex-nowrap">
+      <div class="quarto-author-contents align-items-center text-truncate pe-0">
+        <span class="author-info">Karim Botros<a href="https://orcid.org/0000-0003-0245-1852" class="quarto-title-author-orcid px-1" target="orcid.widget" rel="me noopener noreferrer"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width: 1em; margin-inline-start: 0.5em" alt="ORCID iD icon"></a></span> ; <span class="author-info">Mohammad Alkhatib<a href="https://orcid.org/0000-0003-0971-3835" class="quarto-title-author-orcid px-1" target="orcid.widget" rel="me noopener noreferrer"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width: 1em; margin-inline-start: 0.5em" alt="ORCID iD icon"></a></span> ; <span class="author-info"><a href="https://dfolio.fr/" title="INSA Centre Val de Loire, Univ. Orléans, PRISME EA4229, ">David Folio</a><a href="https://orcid.org/0000-0001-9430-6091" class="quarto-title-author-orcid px-1" target="orcid.widget" rel="me noopener noreferrer"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width: 1em; margin-inline-start: 0.5em" alt="ORCID iD icon"></a></span> ; <span class="author-info">Antoine Ferreira<a href="https://orcid.org/0000-0001-6295-3876" class="quarto-title-author-orcid px-1" target="orcid.widget" rel="me noopener noreferrer"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width: 1em; margin-inline-start: 0.5em" alt="ORCID iD icon"></a></span> 
+      </div>
+    </div>
+    </div>
+    
+    <div class="d-none d-md-flex align-items-center">
+    <div class="author-all d-none d-md-block">
+      <a href="#authors" class="">All Authors</a>
+    </div>
+    </div>
+  </div>
+  </div>
+  </div>
+
+</div>
+</div>
+<hr class="px-3 mt-2">
+</header>
+<div class="quarto-main-body container p-0">
+<section class="quarto-abstract d-flex">
+<div class="container">
+<div class="quarto-abstract-block d-flex row g-0">
+<div class="col-12">
+  <div class="abstract mb-3">
+    <strong class="abstract-title">Abstract:</strong>
+    <p>Microscale robots introduce great perspectives into many medical applications such as drug delivery, minimally invasive surgery, and localized biometric diagnostics. Fully automatic microrobots’ real-time detection and tracking using medical imagers are actually investigated for future clinical translation. Ultrasound (US) B-mode imaging has been employed to monitor single agents and collective swarms of microrobots <em>in vitro</em> and <em>ex vivo</em> in controlled experimental conditions. However, low contrast and spatial resolution still limit the effective employment of such a method in a medical microrobotic scenario due to uncertainties associated with the position of microrobots. The positioning error arises due to the inaccuracy of the US-based visual feedback, which is provided by the detection and tracking algorithms. The application of deep learning networks is a promising solution to detect and track real-time microrobots in noisy ultrasonic images. However, what is most striking is the performance gap among state-of-the-art microrobots deep learning detection and tracking research. A key factor of that is the unavailability of large-scale datasets and benchmarks. In this paper, we present the first publicly available B-mode ultrasound dataset for microrobots (<em>USmicroMagSet</em>) with accurate annotations which contains more than 40000 samples of magnetic microrobots. In addition, for analyzing the performance of microrobots included in the proposed benchmark dataset, 4 deep learning detectors and 4 deep learning trackers are used.</p>
+  </div>
+</div>
+</div>
+
+<div class="citation-meta published-in pb-3">
+<strong class="citation-title">Published in:</strong> IEEE Robotics and Automation Letters
+(<span>Volume:</span>8, 
+<span>Issue:</span>6, 
+2023-04-05)
+
+</div>
+
+<div class="container g-0 pt-3">
+<div class="grid">
+  <div class="g-col-6">
+        <div class="citation-meta pb-3"><strong class="citation-title">Page(s):</strong> 3254 - 3261</div>
+            <div class="citation-meta pb-3"><strong class="citation-title">Date of Publication:</strong> 5 April 2023</div>  </div>
+  <div class="g-col-6">
+    <div class="citation-meta pb-3"><strong>DOI:</strong> <a href="https://doi.org/10.1109/LRA.2023.3264746">10.1109/LRA.2023.3264746</a></div>
+    <div class="citation-meta pb-3"><strong>Publisher: </strong> IEEE</div>
+  </div>
+
+    <div class="g-col-12 pb-3">
+    <div class="funding">
+      <a class="btn p-0" data-bs-toggle="collapse" href="#collapseFA" role="button" aria-expanded="false" aria-controls="collapseFA"><div class="expand_caret caret"><i class="bi bi-caret-right-fill"></i></div><strong>Funding Agency</strong></a>
+      <div class="collapse" id="collapseFA">
+        <div class="funding-info d-flex">
+        Region Centre Val de Loire Fund with the BUBBLEBOT
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+</div>
+</section>
+
+
+<div class="quarto-body-content">
+<section id="sec-intro" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<p><span class="IEEEPARstart">R</span><span>ecently</span> untethered mobile magnetic microrobots have been proposed for a wide range of biomedical applications (drug delivery, clot removal, tissue regeneration) <span class="citation" data-cites="li2017micro"><a href="#ref-li2017micro" role="doc-biblioref">[1]</a></span> due to their small size and ability to operate in confined spaces and hard-to-reach environments <span class="citation" data-cites="chung2021magnetically"><a href="#ref-chung2021magnetically" role="doc-biblioref">[2]</a></span>. In endovascular navigation, real-time localization and tracking of microrobots are essential for achieving targeted navigation through imaging feedback. To do so, various medical imaging technologies are being used for the detection and tracking of microrobots such as ultrasound (US) imaging, magnetic resonance imaging, computer tomography, infrared fluorescence imaging, X-ray, and positron emission tomography <span class="citation" data-cites="pane2019imaging"><a href="#ref-pane2019imaging" role="doc-biblioref">[3]</a></span>. Recently, there has been increasing attention towards the navigation of magnetic microrobots using active mode US imaging endorsed by healthcare applications <span class="citation" data-cites="scheggi2017magnetic"><a href="#ref-scheggi2017magnetic" role="doc-biblioref">[4]</a></span>. It can be explained by the fact that ultrasonic imaging is a noninvasive, versatile, low cost and well-established technique that is regularly used in medical settings. The ultrasound B-mode imaging was successfully used at different scales to detect and to track in real-time different robots <em>in vitro</em> and <em>in vivo</em>. For example at the millimeter-scale, soft grippers <span class="citation" data-cites="khalil2018mechanical"><a href="#ref-khalil2018mechanical" role="doc-biblioref">[5]</a></span>, helical swimmers <span class="citation" data-cites="hu2018smallscale"><a href="#ref-hu2018smallscale" role="doc-biblioref">[6]</a></span> or soft-bodied robots <span class="citation" data-cites="ackermann2016detection"><a href="#ref-ackermann2016detection" role="doc-biblioref">[7]</a></span> have been investigated. Different tracking techniques have been implemented to track the small-scale robots such as modified Markov chain Monte Carlo data association algorithm <span class="citation" data-cites="zhang2021kalman"><a href="#ref-zhang2021kalman" role="doc-biblioref">[8]</a></span>, Kalman filtering <span class="citation" data-cites="zhang2021kalman"><a href="#ref-zhang2021kalman" role="doc-biblioref">[8]</a></span>, and conventional neural networks <span class="citation" data-cites="tiryaki2022deep"><a href="#ref-tiryaki2022deep" role="doc-biblioref">[9]</a></span>. At the microscale, various types of microrobots were successfully demonstrated such as paramagnetic particles <span class="citation" data-cites="khalil2014magneticbase"><a href="#ref-khalil2014magneticbase" role="doc-biblioref">[10]</a></span>, acoustically actuated microswimmer <span class="citation" data-cites="chen2019ultrasound"><a href="#ref-chen2019ultrasound" role="doc-biblioref">[11]</a></span>, self-propelled microjets <span class="citation" data-cites="sanchez2014magnetic"><a href="#ref-sanchez2014magnetic" role="doc-biblioref">[12]</a></span> and bio-inspired magnetosperm <span class="citation" data-cites="magdanz2020ironsperm"><a href="#ref-magdanz2020ironsperm" role="doc-biblioref">[13]</a></span> in living tissue. However, the lack of B-mode resolution owing to poor microrobot echogenicity in image contrast, as well as the low signal-to-noise ratio (SNR), hinders the real-time tracking of microrobots in endovascular applications. To enhance spatial resolution, ultrasound phase analysis was implemented in <span class="citation" data-cites="pane2021realtime"><a href="#ref-pane2021realtime" role="doc-biblioref">[14]</a></span> to derive microrobot features such as size and position over time allowing to perform imaging and tracking of a low contrast microrobot in chicken breast. Finally, Doppler-based ultrasound appears as a promising tool for tracking microrobots in echogenic and dynamic environments as biological tissues. In <span class="citation" data-cites="wang2020realtime wang2021ultrasound"><a href="#ref-wang2020realtime" role="doc-biblioref">[15]</a>, <a href="#ref-wang2021ultrasound" role="doc-biblioref">[16]</a></span> a strategy to navigate a nanoparticle microswarm in real-time under ultrasound Doppler imaging guidance for active endovascular delivery was implemented in blood vessels. The Doppler signals near the microswarm in flowing blood environments were observed, and the microswarm was efficiently tracked and navigated in real-time using Doppler feedback. However, taking into the wide diversity of robot geometries and sizes, variability of swimming principles, and robot material echogenicity properties, the proposed state-of-the-art real-time detection and tracking methodologies face shadowing, low contrast, strong attenuation across an image, and fuzziness of vessel boundaries. Microrobot detection and tracking in vessels is a challenging task, particularly when using US imaging. These challenges in US images include speckle noise, dynamic backgrounds, blur, and US image artifacts. This drives the employment of deep learning-based methods to enhance microrobot detection and tracking in vessels <span class="citation" data-cites="liu2022capsule"><a href="#ref-liu2022capsule" role="doc-biblioref">[17]</a></span>. However, further research on deep learning detection of microrobots in US images is still not fully explored. Furthermore, convolution neural networks (CNN) models and frameworks may also be retrained using a customized dataset, offering deep learning techniques more flexibility than computer vision methods.</p>
+<p>Moreover, deep learning-driven techniques yield promising performance for automatic detection and tracking of navigable magnetic microrobots using ultrasonic imaging <span class="citation" data-cites="botross2022fully"><a href="#ref-botross2022fully" role="doc-biblioref">[18]</a></span>. But, there is no well-established benchmarking dataset. Typically, some research teams test and report the performance of their technique on their own private dataset utilizing experimental setups designed expressly for that purpose. Consequently, comparing the performance of multiple approaches or predicting how a given methodology will perform if the experimental setup/conditions change is challenging.</p>
+<p>In this work, we propose a public large-scale benchmarking dataset (<span class="math inline">\(USMicroMagset\)</span>), summarized in <a href="#fig-dataset">Fig.&nbsp;1</a>. The dataset consists of ultrasound B-mode images of magnetic microrobots with different aspect ratios, sizes (1 mm to 300 µm), shapes, soft/rigid structures, and locomotion principles. This survey provides some insights into the challenges of detectability and trackability of a wide variety of magnetic microrobots navigating in microfluidic channels mimicking a vessel network. In addition, this dataset is used to perform a comprehensive survey of deep learning-based microrobot detection and tracking in ultrasonic B-mode images. Based on these comparative analyses <span class="citation" data-cites="srivastava2021comparative marvasti-zadeh2022deep"><a href="#ref-srivastava2021comparative" role="doc-biblioref">[19]</a>, <a href="#ref-marvasti-zadeh2022deep" role="doc-biblioref">[20]</a></span>, we have extracted the best four detectors and the best four trackers. Then we evaluated these detectors and trackers on our dataset <span class="math inline">\(USMicroMagset\)</span>. Finally, using the best detector and tracker algorithms, we evaluated each microrobot under real-time challenging scenarios simulating in vivo imaging problems such as changing ultrasound parameters, changing speed of microrobot motion, partial and full occlusion, and out-of-plane motion.</p>
+<div id="fig-dataset" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Figures/Figure1.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Fig.&nbsp;1: Illustration of the three classes of eight swimming magnetic microrobots used for the <span class="math inline">\(USMicroMagset\)</span> dataset. For each microrobot, 5k images were extracted from 5 videos of 10min each. (Row 1) Class SMF: Steering magnetic field with three subclasses (sphere, cube and cylinder) of hard NdFeB magnets. (Row 2) Class RMF: Rotating magnetic field with three subclasses (helix microrobot, soft magnetic sheet microrobot, cube microrobot). (Row 3) Class OMF: Oscillating magnetic field with two subclasses (chain-like swimmer, one-armed flagella swimmer with magnetic head).</figcaption>
+</figure>
+</div>
+<p>The paper is organized as follows: Section 2 describes the datasets and the methods used in the proposed work. Section 3 describes the deep learning detectors and trackers. Section 4 made a comparative assessment of the different detectors and trackers before concluding.</p>
+</section>
+<section id="microrobot-benchmarking" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Microrobot Benchmarking</h1>
+<section id="classes" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="classes"><span class="header-section-number">2.1</span> Classes</h2>
+<p>In the proposed <span class="math inline">\(USMicroMagset\)</span> dataset, there are three different classes describing three operating principles of hard and soft magnetic microrobots. Our dataset is composed of 40k images subdivided into three classes of magnetic microrobots. <a href="#fig-dataset">Fig.&nbsp;1</a> summarizes the locomotion principles for each class of magnetic microrobot used in the datasets. We recorded 5k images for each microrobot prototype (80% for training and 20% for testing). All images have been annotated manually by an experienced expert.</p>
+</section>
+<section id="microrobot-principle" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="microrobot-principle"><span class="header-section-number">2.2</span> Microrobot principle</h2>
+<p>Basically, governing equations of magnetized hard and soft microrobots controlled by magnetic fields are as follows : <span class="math display">\[\begin{equation}
+{\vb{\textbf{F}}_{m}}= \left(\vb{M}\cdot \nabla\right) \vb{B} \label{eq:Fm}
+\end{equation}\]</span> <span class="math display">\[\begin{equation}
+\vb{\textbf{T}_{m}}= \left(\vb{M}\times\vb{B}\right) \label{eq:Tm}
+\end{equation}\]</span> where <span class="math inline">\(\vb{\textbf{T}_{m}}\)</span> is the resultant magnetic torque; <span class="math inline">\(\vb{\textbf{F}_{m}}\)</span> is the resultant magnetic force; <span class="math inline">\(\vb{M}\)</span> is the magnetic moment of the object; <span class="math inline">\(\vb{B}\)</span> is the applied magnetic field. Depending on the actuating magnetic fields, three classes have been identified and tested:</p>
+<section id="steering-magnetic-field-smf-class" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="steering-magnetic-field-smf-class"><span class="header-section-number">2.2.1</span> Steering magnetic field (SMF) class</h3>
+<p>The first class consists of three subclasses of force-driven microrobots (Row;1 in <a href="#fig-dataset">Fig.&nbsp;1</a>) using various shapes of hard NdFeB magnets (spheres, cubes, and cylinders). The steering motion relies on the use of SMF induced by three-axis Maxwell pair coils.</p>
+<p>The resultant steering force <span class="math inline">\(\vb{\textbf{F}_{m}}\)</span> provides a linear steering motion of the microrobot <span class="citation" data-cites="kummer2010octomag mathieu2010steeringa ghanbari2014electromagnetic"><a href="#ref-kummer2010octomag" role="doc-biblioref">[21]</a>–<a href="#ref-ghanbari2014electromagnetic" role="doc-biblioref">[23]</a></span></p>
+</section>
+</section>
+</section>
+</div>
+
+<div id="quarto-accordion" class="accordion d-none d-md-block" role="tablist">
+    <div class="accordion-item container" id="">
+    <div class="accordion-header d-flex justify-content-between" id="heading-author" role="tab">
+      <button id="authors" class="accordion-button p-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-authors" aria-expanded="false" aria-controls="collapse-authors">Authors</button>
+    </div>
+    <div id="collapse-authors" class="accordion-body collapse" aria-labelledby="heading-authors" data-bs-parent="#quarto-accordion" role="tabpanel">
+          <div class="accordion-authors container">
+      <div class="author-card"><div class="grid gap-0">
+                <div class="g-col-12">
+          <div><span class="author-info">Karim Botros<a href="https://orcid.org/0000-0003-0245-1852" class="quarto-title-author-orcid px-1" target="orcid.widget" rel="me noopener noreferrer"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width: 1em; margin-inline-start: 0.5em" alt="ORCID iD icon"></a></span></div>
+          <div>INSA Centre Val de Loire, Univ. Orléans, PRISME EA4229, Bourges France</div>
+        </div>
+              </div>
+      
+      </div>
+      </div>
+           <div class="accordion-authors container">
+      <div class="author-card"><div class="grid gap-0">
+                <div class="g-col-12">
+          <div><span class="author-info">Mohammad Alkhatib<a href="https://orcid.org/0000-0003-0971-3835" class="quarto-title-author-orcid px-1" target="orcid.widget" rel="me noopener noreferrer"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width: 1em; margin-inline-start: 0.5em" alt="ORCID iD icon"></a></span></div>
+          <div>Clermont Auvergne INP, CNRS, SIGMA Clermont, Clermont Ferrand France</div>
+        </div>
+              </div>
+      
+      </div>
+      </div>
+           <div class="accordion-authors container">
+      <div class="author-card"><div class="grid gap-0">
+                <div class="g-col-12">
+          <div><span class="author-info"><a href="https://dfolio.fr/" title="INSA Centre Val de Loire, Univ. Orléans, PRISME EA4229, ">David Folio</a><a href="https://orcid.org/0000-0001-9430-6091" class="quarto-title-author-orcid px-1" target="orcid.widget" rel="me noopener noreferrer"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width: 1em; margin-inline-start: 0.5em" alt="ORCID iD icon"></a></span></div>
+          <div>INSA Centre Val de Loire, Univ. Orléans, PRISME EA4229, Bourges France</div>
+        </div>
+              </div>
+      
+      </div>
+      </div>
+           <div class="accordion-authors container">
+      <div class="author-card"><div class="grid gap-0">
+                <div class="g-col-12">
+          <div><span class="author-info">Antoine Ferreira<a href="https://orcid.org/0000-0001-6295-3876" class="quarto-title-author-orcid px-1" target="orcid.widget" rel="me noopener noreferrer"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width: 1em; margin-inline-start: 0.5em" alt="ORCID iD icon"></a></span></div>
+          <div>INSA Centre Val de Loire, Univ. Orléans, PRISME EA4229, Bourges France</div>
+        </div>
+              </div>
+      
+      </div>
+      </div>
+         </div>
+  </div>
+  
+    <div class="accordion-item container">
+    <div class="accordion-header d-flex justify-content-between" id="heading-references" role="tab">
+      <button id="authors" class="accordion-button p-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-references" aria-expanded="false" aria-controls="collapse-references">References</button>
+    </div>
+    <div id="collapse-references" class="accordion-body collapse" aria-labelledby="heading-references" data-bs-parent="#quarto-accordion" role="tabpanel">
+      <section id="references" class="accordion-references">
+        <div id="refs" class="references csl-bib-body" role="list">
+        <div id="ref-li2017micro" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[1] </div><div class="csl-right-inline">J. Li, B. E.-F. de Ávila, W. Gao, L. Zhang, and J. Wang, <span>“Micro/nanorobots for biomedicine: <span>Delivery</span>, surgery, sensing, and detoxification,”</span> <em>Science Robotics</em>, vol. 2, no. 4, 2017. </div>
+        </div>
+        <div id="ref-chung2021magnetically" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[2] </div><div class="csl-right-inline">H.-J. Chung, A. M. Parsons, and L. Zheng, <span>“<a href="https://doi.org/10.1002/aisy.202000186">Magnetically <span>Controlled Soft Robotics Utilizing Elastomers</span> and <span>Gels</span> in <span>Actuation</span>: <span>A Review</span></a>,”</span> <em>Advanced Intelligent Systems</em>, vol. 3, no. 3, p. 2000186, 2021. </div>
+        </div>
+        <div id="ref-pane2019imaging" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[3] </div><div class="csl-right-inline">S. Pané <em>et al.</em>, <span>“<a href="https://doi.org/10.1002/admt.201800575">Imaging <span>Technologies</span> for <span>Biomedical Micro-</span> and <span>Nanoswimmers</span></a>,”</span> <em>Advanced Materials Technologies</em>, vol. 4, no. 4, p. 1800575, 2019. </div>
+        </div>
+        <div id="ref-scheggi2017magnetic" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[4] </div><div class="csl-right-inline">S. Scheggi <em>et al.</em>, <span>“<a href="https://doi.org/10.1109/ICRA.2017.7989730">Magnetic motion control and planning of untethered soft grippers using ultrasound image feedback</a>,”</span> in <em>2017 <span>IEEE International Conference</span> on <span>Robotics</span> and <span>Automation</span> (<span>ICRA</span>)</em>, 2017, pp. 6156–6161. </div>
+        </div>
+        <div id="ref-khalil2018mechanical" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[5] </div><div class="csl-right-inline">I. S. M. Khalil <em>et al.</em>, <span>“<a href="https://doi.org/10.1109/LRA.2018.2792156">Mechanical <span>Rubbing</span> of <span>Blood Clots Using Helical Robots Under Ultrasound Guidance</span></a>,”</span> <em>IEEE Robotics and Automation Letters</em>, vol. 3, no. 2, pp. 1112–1119, Apr. 2018. </div>
+        </div>
+        <div id="ref-hu2018smallscale" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[6] </div><div class="csl-right-inline">W. Hu, G. Z. Lum, M. Mastrangeli, and M. Sitti, <span>“<a href="https://doi.org/10.1038/nature25443">Small-scale soft-bodied robot with multimodal locomotion</a>,”</span> <em>Nature</em>, vol. 554, no. 7690, 7690, pp. 81–85, Feb. 2018. </div>
+        </div>
+        <div id="ref-ackermann2016detection" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[7] </div><div class="csl-right-inline">D. Ackermann and G. Schmitz, <span>“<a href="https://doi.org/10.1109/TUFFC.2015.2500266">Detection and <span>Tracking</span> of <span>Multiple Microbubbles</span> in <span>Ultrasound B-Mode Images</span></a>,”</span> <em>IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control</em>, vol. 63, no. 1, pp. 72–82, Jan. 2016. </div>
+        </div>
+        <div id="ref-zhang2021kalman" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[8] </div><div class="csl-right-inline">H. Zhang, H. Zhan, L. Zhang, F. Xu, and X. Ding, <span>“<a href="https://doi.org/10.3390/mi12070774">A <span>Kalman Filter-Based Kernelized Correlation Filter Algorithm</span> for <span>Pose Measurement</span> of a <span>Micro-Robot</span></a>,”</span> <em>Micromachines</em>, vol. 12, no. 7, 7, p. 774, Jul. 2021. </div>
+        </div>
+        <div id="ref-tiryaki2022deep" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[9] </div><div class="csl-right-inline">M. E. Tiryaki, S. O. Demir, and M. Sitti, <span>“<a href="https://doi.org/10.1109/LRA.2022.3179509">Deep <span class="nocase">Learning-based 3D Magnetic Microrobot Tracking</span> using <span>2D MR Images</span></a>,”</span> <em>IEEE Robotics and Automation Letters</em>, vol. 7, no. 3, pp. 6982–6989, Jul. 2022. </div>
+        </div>
+        <div id="ref-khalil2014magneticbase" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[10] </div><div class="csl-right-inline">I. S. M. Khalil, P. Ferreira, R. Eleutério, C. L. de Korte, and S. Misra, <span>“<a href="https://doi.org/10.1109/ICRA.2014.6907411">Magnetic-based closed-loop control of paramagnetic microparticles using ultrasound feedback</a>,”</span> in <em>2014 <span>IEEE</span> international conference on robotics and automation (<span>ICRA</span>)</em>, 2014, pp. 3807–3812. </div>
+        </div>
+        <div id="ref-chen2019ultrasound" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[11] </div><div class="csl-right-inline">Q. Chen, F.-W. Liu, Z. Xiao, N. Sharma, S. K. Cho, and K. Kim, <span>“<a href="https://doi.org/10.1109/TBME.2019.2902523">Ultrasound tracking of the acoustically actuated microswimmer</a>,”</span> <em>IEEE Transactions on Biomedical Engineering</em>, vol. 66, no. 11, pp. 3231–3237, 2019. </div>
+        </div>
+        <div id="ref-sanchez2014magnetic" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[12] </div><div class="csl-right-inline">A. Sánchez, V. Magdanz, O. G. Schmidt, and S. Misra, <span>“<a href="https://doi.org/10.1109/BIOROB.2014.6913771">Magnetic control of self-propelled microjets under ultrasound image guidance</a>,”</span> <em>IEEE RAS/EMBS International Conference on Biomedical Robotics and Biomechatronics</em>, pp. 169–174, 2014. </div>
+        </div>
+        <div id="ref-magdanz2020ironsperm" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[13] </div><div class="csl-right-inline">V. Magdanz <em>et al.</em>, <span>“<a href="https://doi.org/10.1126/sciadv.aba5855"><span>IRONSperm</span>: <span class="nocase">Sperm-templated</span> soft magnetic microrobots</a>,”</span> <em>Science Advances</em>, vol. 6, no. 28, p. eaba5855, Jul. 2020. </div>
+        </div>
+        <div id="ref-pane2021realtime" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[14] </div><div class="csl-right-inline">S. Pane, V. Iacovacci, E. Sinibaldi, and A. Menciassi, <span>“<a href="https://doi.org/10.1063/5.0032969">Real-time imaging and tracking of microrobots in tissues using ultrasound phase analysis</a>,”</span> <em>Applied Physics Letters</em>, vol. 118, no. 1, p. 014102, Jan. 2021. </div>
+        </div>
+        <div id="ref-wang2020realtime" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[15] </div><div class="csl-right-inline">Q. Wang, L. Yang, J. Yu, P. W. Y. Chiu, Y.-P. Zheng, and L. Zhang, <span>“<a href="https://doi.org/10.1109/TBME.2020.2987045">Real-<span>Time Magnetic Navigation</span> of a <span>Rotating Colloidal Microswarm Under Ultrasound Guidance</span></a>,”</span> <em>IEEE Transactions on Biomedical Engineering</em>, vol. 67, no. 12, pp. 3403–3412, Dec. 2020. </div>
+        </div>
+        <div id="ref-wang2021ultrasound" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[16] </div><div class="csl-right-inline">Q. Wang <em>et al.</em>, <span>“<a href="https://doi.org/10.1126/sciadv.abe5914">Ultrasound <span class="nocase">Doppler-guided</span> real-time navigation of a magnetic microswarm for active endovascular delivery</a>,”</span> <em>Science Advances</em>, vol. 7, no. 9, p. eabe5914, Feb. 2021. </div>
+        </div>
+        <div id="ref-liu2022capsule" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[17] </div><div class="csl-right-inline">X. Liu <em>et al.</em>, <span>“<a href="https://doi.org/10.1038/s41598-022-25572-w">Capsule robot pose and mechanism state detection in ultrasound using attention-based hierarchical deep learning</a>,”</span> <em>Sci Rep</em>, vol. 12, no. 1, 1, p. 21130, Dec. 2022. </div>
+        </div>
+        <div id="ref-botross2022fully" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[18] </div><div class="csl-right-inline">K. Botross, M. Alkhatib, D. Folio, and A. FERREIRA, <span>“<a href="https://doi.org/10.1109/ICRA46639.2022.9812114">Fully <span>Automatic</span> and <span>Real-Time Microrobot Detection</span> and <span>Tracking</span> based on <span>Ultrasound Imaging</span> using <span>Deep Learning</span></a>,”</span> in <em><span>IEEE Conference</span> on <span>Robotics</span> and <span>Automation</span> (<span>ICRA</span>)</em>, 2022. </div>
+        </div>
+        <div id="ref-srivastava2021comparative" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[19] </div><div class="csl-right-inline">S. Srivastava, A. V. Divekar, C. Anilkumar, I. Naik, V. Kulkarni, and V. Pattabiraman, <span>“<a href="https://doi.org/10.1186/s40537-021-00434-w">Comparative analysis of deep learning image detection algorithms</a>,”</span> <em>Journal of Big Data</em>, vol. 8, no. 1, p. 66, May 2021. </div>
+        </div>
+        <div id="ref-marvasti-zadeh2022deep" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[20] </div><div class="csl-right-inline">S. M. Marvasti-Zadeh, L. Cheng, H. Ghanei-Yakhdan, and S. Kasaei, <span>“<a href="https://doi.org/10.1109/TITS.2020.3046478">Deep <span>Learning</span> for <span>Visual Tracking</span>: <span>A Comprehensive Survey</span></a>,”</span> <em>IEEE Transactions on Intelligent Transportation Systems</em>, vol. 23, no. 5, pp. 3943–3968, May 2022. </div>
+        </div>
+        <div id="ref-kummer2010octomag" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[21] </div><div class="csl-right-inline">M. P. Kummer, J. J. Abbott, B. E. Kratochvil, R. Borer, A. Sengul, and B. J. Nelson, <span>“<a href="https://doi.org/10.1109/TRO.2010.2073030">Octomag: <span>An</span> electromagnetic system for 5-<span>DOF</span> wireless micromanipulation</a>,”</span> <em>IEEE Transactions on Robotics</em>, vol. 26, no. 6, pp. 1006–1017, 2010. </div>
+        </div>
+        <div id="ref-mathieu2010steeringa" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[22] </div><div class="csl-right-inline">J.-B. Mathieu and S. Martel, <span>“<a href="https://doi.org/10.1002/mrm.22279">Steering of aggregating magnetic microparticles using propulsion gradients coils in an <span>MRI Scanner</span></a>,”</span> <em>Magnetic Resonance in Medicine</em>, vol. 63, no. 5, pp. 1336–1345, 2010. </div>
+        </div>
+        <div id="ref-ghanbari2014electromagnetic" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[23] </div><div class="csl-right-inline">A. Ghanbari, P. H. Chang, B. J. Nelson, and H. Choi, <span>“<a href="https://doi.org/10.1080/15599612.2014.901454">Electromagnetic <span>Steering</span> of a <span>Magnetic Cylindrical Microrobot Using Optical Feedback Closed-Loop Control</span></a>,”</span> <em>International Journal of Optomechatronics</em>, vol. 8, no. 2, pp. 129–145, Apr. 2014. </div>
+        </div>
+        </div>
+      </section>
+    </div>
+  </div>
+      <div class="accordion-item container">
+    <div class="accordion-header d-flex justify-content-between" id="heading-keywords" role="tab">
+      <button id="authors" class="accordion-button p-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-keywords" aria-expanded="false" aria-controls="collapse-keywords">Keywords</button>
+    </div>
+    <div id="collapse-keywords" class="accordion-body collapse" aria-labelledby="heading-keywords" data-bs-parent="#quarto-accordion" role="tabpanel">
+      <div class="accordion-keywords">
+        <strong>Author Keywords</strong>
+        <ul class="mt-3 p-0">
+                <li>Micro/nano robots, </li><li>Medical robots and systems, </li>
+        <li>deep learning methods.</li>
+                </ul>
+      </div>
+    </div>
+  </div>
+  
+</div>
+</div>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@article{botros2023,
+  author = {Botros, Karim and Alkhatib, Mohammad and Folio, David and
+    Ferreira, Antoine},
+  publisher = {IEEE},
+  title = {USMicroMagSet: {Using} {Deep} {Learning} {Analysis} to
+    {Benchmark} the {Performance} of {Microrobots} in {Ultrasound}
+    {Images}},
+  journal = {IEEE Robotics and Automation Letters},
+  volume = {8},
+  number = {6},
+  pages = {3254 - 3261},
+  date = {2023-06},
+  url = {https://ieeexplore.ieee.org/document/10093014},
+  doi = {10.1109/LRA.2023.3264746},
+  langid = {en},
+  abstract = {Microscale robots introduce great perspectives into many
+    medical applications such as drug delivery, minimally invasive
+    surgery, and localized biometric diagnostics. Fully automatic
+    microrobots’ real-time detection and tracking using medical imagers
+    are actually investigated for future clinical translation.
+    Ultrasound (US) B-mode imaging has been employed to monitor single
+    agents and collective swarms of microrobots \_in vitro\_ and \_ex
+    vivo\_ in controlled experimental conditions. However, low contrast
+    and spatial resolution still limit the effective employment of such
+    a method in a medical microrobotic scenario due to uncertainties
+    associated with the position of microrobots. The positioning error
+    arises due to the inaccuracy of the US-based visual feedback, which
+    is provided by the detection and tracking algorithms. The
+    application of deep learning networks is a promising solution to
+    detect and track real-time microrobots in noisy ultrasonic images.
+    However, what is most striking is the performance gap among
+    state-of-the-art microrobots deep learning detection and tracking
+    research. A key factor of that is the unavailability of large-scale
+    datasets and benchmarks. In this paper, we present the first
+    publicly available B-mode ultrasound dataset for microrobots
+    (\_USmicroMagSet\_) with accurate annotations which contains more
+    than 40000 samples of magnetic microrobots. In addition, for
+    analyzing the performance of microrobots included in the proposed
+    benchmark dataset, 4 deep learning detectors and 4 deep learning
+    trackers are used.}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-botros2023" class="csl-entry quarto-appendix-citeas" role="listitem">
+<div class="">K.
+Botros, M. Alkhatib, D. Folio, and A. Ferreira, <span>“USMicroMagSet:
+Using Deep Learning Analysis to Benchmark the Performance of Microrobots
+in Ultrasound Images,”</span> <em>IEEE Robotics and Automation
+Letters</em>, vol. 8, no. 6, pp. 3254–3261, Jun. 2023 [Online].
+Available: <a href="https://ieeexplore.ieee.org/document/10093014">https://ieeexplore.ieee.org/document/10093014</a></div>
+</div></div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
