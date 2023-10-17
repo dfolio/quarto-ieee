@@ -58,5 +58,5 @@ You can view a preview of the rendered basic template at [template.pdf](template
   - The default Quarto toc is used, so the display is not the same as on IEEEXplore^®^.
   - Footnote are put at the end of document, while on IEEEXplore^®^ there are placed in the accordion.
   - Figures are not placed in the accordion.
-  - IEEEXplore^®^ specifics (e.g. citation metrics)
+  - IEEEXplore^®^ specifics (e.g. citation metrics, etc.)
   
