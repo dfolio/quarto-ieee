@@ -274,3 +274,7 @@ your work on this article.
 Use `[]{.appendix options="An Appendix"}` markup if you have a single appendix.
 `IEEEtran` state that to do not use `\section{}` anymore after `\appendix`.
 
+
+::: {.content-visible when-format="pdf"}
+# References {-}
+:::
