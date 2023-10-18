@@ -44,6 +44,7 @@ pageheader:
   right: 'D. Folio:  A Sample Article Using quarto-ieee'
 bibliography: bibliography.bib
 date: 2023-06-23
+pdf: https://github.com/dfolio/quarto-ieee/blob/main/template.pdf
 citation: 
   container-title: GitHUB
   page: 1-3
