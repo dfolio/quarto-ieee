@@ -75,16 +75,34 @@ Incomplete articles (i.e. more advanced examples) are available in the `examples
 ### Unsuported feature and limitations
 
 - Several authors with same affiliation. 
-  In such case use `note` and `tex-author-no-affiliation: true`
+  In such case use `note` and `tex-author-no-affiliation: true`.
+- For `PDF` output
+  - `quarto-ieee` use a hack to handle the `longtable` issue with  2-column LaTeX documents[^longtable].
+    In some cases, a page overflow may occur.
 - For `HTML` output
   - The default Quarto toc is used, so the display is not the same as on [IEEEXplore<sup>®</sup>].
   - Footnote are put at the end of document, while on [IEEEXplore<sup>®</sup>] there are placed in the accordion.
   - Figures are not placed in the accordion.
   - [IEEEXplore<sup>®</sup>] specifics (e.g. citation metrics, etc.)
+  - The `HTML` output is a  [Quarto citeable article](https://quarto.org/docs/authoring/create-citeable-articles.html), so a citation appendix is automatically added to the article end.
+
+[^longtable]: "_[longtable not compatible with 2-column LaTeX documents](https://github.com/jgm/pandoc/issues/1023>)_", see this issue <https://github.com/jgm/pandoc/issues/1023>
+
   
 > [!IMPORTANT]
-> The `quarto-ieee` templates are intended to **approximate the final look and page length of the articles/papers** either in `PDF` output or `HTML` output. 
+> The `quarto-ieee` template are intended to **approximate the final look and page length of the articles/papers** either in `PDF` output or `HTML` output. 
 > **They are NOT intended to be the final produced work that is displayed in print or on [IEEEXplore<sup>®</sup>]**.
 > They will help to give the authors an approximation of the number of pages and layout that will be in the final version. 
+
+
+### Contributing
+
+If you want to improve the `quarto-ieee` template do not hesitate to submit Pull Request (PR) (it is considered good practice to open an issue for discussion before working on a pull request for a new feature).
+
+
+
+
+
+
 
 [IEEEXplore<sup>®</sup>]: <https://ieeexplore.ieee.org/>
