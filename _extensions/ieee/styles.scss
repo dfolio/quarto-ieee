@@ -85,8 +85,8 @@ $headings-color:              inherit !default;
 }
 #quarto-document-content{
   a{
-    color: $link-color;
     &:not([href]), &:not([class]){
+      color: $link-color;
       text-decoration: none;
     }
     &:hover{
