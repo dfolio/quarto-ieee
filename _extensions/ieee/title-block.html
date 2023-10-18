@@ -10,7 +10,7 @@
     <div class="mb-3 mt-2 d-grid gap-3 d-md-flex">
       $if(citation.publisher)$<span class="publisher btn text-success"><strong>Publisher:</strong> $citation.publisher$</span>$endif$
       <a href="#citation" class="btn btn-outline-primary" role="button">Cite This</a>
-      $if(pdf)$<a href="$pdf$" class="btn btn-danger .text-white" role="button"><i class="bi bi-file-pdf" rel="img" aria-label="PDF"></i>PDF</a>$endif$
+      $if(pdf)$<a href="$pdf$" class="btn btn-danger text-white" role="button"><i class="bi bi-file-pdf" rel="img" aria-label="PDF"></i>PDF</a>$endif$
     </div>
     </div>
   </div>
@@ -23,7 +23,11 @@
     <div class="quarto-author overflow-hidden">
     <div class="d-flex flex-nowrap">
       <div class="quarto-author-contents align-items-center text-truncate pe-0">
-        $for(by-author)$$author.html()$ $sep$; $endfor$
+        $if(author/allbutlast)$
+        $for(by-author/allbutlast)$$author.html()$$sep$; $endfor$ and ${ by-author/last:author.html() }
+        $else$
+        $for(by-author)$$author.html()$$endfor$
+        $endif$
       </div>
     </div>
     </div>
@@ -31,7 +35,11 @@
     <div class="quarto-author overflow-hidden">
     <div class="d-flex flex-nowrap">
       <div class="quarto-author-contents align-items-center text-truncate pe-0">
-        $for(by-author)$$author.html()$ $sep$; $endfor$
+        $if(author/allbutlast)$
+        $for(by-author/allbutlast)$$author.html()$$sep$; $endfor$ and ${ by-author/last:author.html() }
+        $else$
+        $for(by-author)$$author.html()$$endfor$
+        $endif$
       </div>
     </div>
     </div>
