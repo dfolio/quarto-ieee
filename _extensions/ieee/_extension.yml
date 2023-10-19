@@ -26,8 +26,8 @@ contributes:
         fig-title: Fig.
         fig-prefix: Fig.
       csl: ieee-with-url.csl
-      #cite-method: citeproc
-      cite-method: biblatex
+      cite-method: citeproc
+      #cite-method: biblatex
       link-citations: true
       execute:
         echo: false
