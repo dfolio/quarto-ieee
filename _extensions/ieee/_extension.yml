@@ -41,8 +41,6 @@ contributes:
       format-resources:
         # Add here the resources required for the PDF rendering
         - IEEEtran.cls
-        - tabularray.sty
-        - ninecolors.sty
       template-partials:
         - author.tex
         - affiliation.tex
