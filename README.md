@@ -99,10 +99,4 @@ Incomplete articles (i.e. more advanced examples) are available in the `examples
 
 If you want to improve the `quarto-ieee` template do not hesitate to submit Pull Request (PR) (it is considered good practice to open an issue for discussion before working on a pull request for a new feature).
 
-
-
-
-
-
-
 [IEEEXplore<sup>®</sup>]: <https://ieeexplore.ieee.org/>

@@ -86,11 +86,9 @@ Aenean in hendrerit quam. Orci varius natoque penatibus et magnis dis parturient
 Maecenas ac posuere turpis. Fusce est dui, dapibus sed odio eget, eleifend facilisis felis. Nam gravida varius enim, ornare tincidunt urna ullamcorper ut. Donec sit amet eros ac lacus placerat rutrum ut non dolor. Nulla tincidunt nunc massa, sed euismod dui feugiat vitae. Integer tempus risus rutrum tellus interdum, eu aliquet sapien rutrum. Nunc feugiat varius lacus sed laoreet. Integer euismod tellus nisi, id scelerisque sem sagittis eu. Suspendisse at orci vel neque varius tempor nec vitae odio. Integer elementum elementum fermentum. Morbi in turpis cursus, lacinia arcu et, semper orci.
 
 Proin pharetra eros tellus, condimentum tempor ex commodo sit amet. Aliquam nec nisl mattis erat convallis semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam suscipit metus at vehicula ultricies. Morbi quis ullamcorper sem. Nam gravida blandit lacus id imperdiet. Morbi lacinia libero risus, vel fringilla risus ullamcorper sed. Nulla in rutrum quam. Phasellus vitae ante eleifend, semper lorem faucibus, consectetur lorem. Proin sed urna quis nunc fringilla bibendum sed sed ipsum. Praesent et erat sed purus commodo blandit. Aliquam gravida consequat mi, a egestas tellus varius a. Donec eu nulla suscipit, feugiat eros commodo, euismod enim.
-
-Ipsum habitant inceptos volutpat cras nostra, proin commodo eget varius. Volutpat arcu praesent, nisi vulputate convallis inceptos consequat. Aenean
-hendrerit sociis congue nulla ultricies, at tempor sapien nullam ullamcorper. 
-
-
+\
+Ipsum habitant inceptos volutpat cras nostra, proin commodo eget varius. Volutpat arcu praesent, nisi vulputate convallis inceptos consequat. 
+Aenean hendrerit sociis congue nulla ultricies, at tempor sapien nullam ullamcorper. 
 
 
 # Some Common Elements
@@ -188,7 +186,7 @@ It is recommended to use div block with `#fig-` label to embed your Figures.
 
 
 :::{#fig-1}
-![](fig1.png)
+![](fig1.png){width="30%"}
 
 An example of figure.
 :::
@@ -224,15 +222,15 @@ plot(cars)
 ### Tables
 
 For tables produced by executable code cells, include a label with a `#tbl-` prefix to make them cross-referenceable. 
-For example (same as the one provided by Quarto documentation):
+\
+It is recommended to avoid using the commonly used single markdown table known as a 'pipe table'. 
+In fact, Pandoc markdown uses the {{< latex >}} `longtable` package, which does not support the two-column mode[^issue-1023], which is required for most `IEEEtran` journals.
+`quarto-ieee` uses a hack to temporarily switch to one-column mode. 
+However, this hack may break the page layout.
+To overcome this issue, a basic way is to use code cells (as for @tbl-other).
+Quarto is a multi-language and it uses  `Knitr` to execute `R` code and can execute  Python code blocks within markdown.
 
-| Col1 | Col2 | Col3 |
-|------|------|------|
-| A    | B    | C    |
-| E    | F    | G    |
-| A    | G    | G    |
-
-: My Caption {#tbl-letters}
+[^issue-1023]: <https://github.com/jgm/pandoc/issues/1023>
 
 ::: {#tbl-panel layout-ncol=2}
 | Col1 | Col2 | Col3 |
@@ -251,15 +249,24 @@ For example (same as the one provided by Quarto documentation):
 
 : Second Table {#tbl-second}
 
-Main Caption
+Main Caption 
 :::
 
+The figures is cross-referenced as @tbl-panel for details, especially @tbl-second.
+There is also @tbl-other.
 
-See @tbl-letters.
-See @tbl-panel for details, especially @tbl-second.
+```{r}
+#| label: tbl-other
+#| tbl-cap: "A table"
+#| tbl.env: tabular
 
-<!-- \newpage -->
+options(knitr.table.format = function() {if (knitr::is_latex_output()) 'latex' else 'pandoc'})
+dt <- data.frame(Col1=c('A','B','C'),
+                 Col2=c('D','E','F'),
+                 Col3=c('G','H','I'))
 
+knitr::kable(head(dt), booktabs = TRUE)
+```
 
 # Conclusions
 The conclusion goes here.

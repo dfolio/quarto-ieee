@@ -11,6 +11,7 @@ contributes:
       filters:
         - latex-environment
         - ieee.lua
+        # - longtable_fix.py
       environments:
         - IEEEbiography
         - IEEEbiographynophoto
@@ -29,17 +30,22 @@ contributes:
       link-citations: true
       execute:
         echo: false
+        warning: false
+        freeze: true
     pdf:
       template: ieee-template.tex
       pdf-engine: pdflatex
       keep-tex: true
       toc: false
+      df-print: kable
       format-resources:
         # Add here the resources required for the PDF rendering
         - IEEEtran.cls
+        - tabularray.sty
+        - ninecolors.sty
       template-partials:
-        - "author.tex"
-        - "affiliation.tex"
+        - author.tex
+        - affiliation.tex
         - afterbody.tex
     html:
       toc: true
