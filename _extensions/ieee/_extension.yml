@@ -39,6 +39,7 @@ contributes:
       keep-tex: true
       toc: false
       df-print: kable
+      latex-auto-install: true
       format-resources:
         # Add here the resources required for the PDF rendering
         - IEEEtran.cls
