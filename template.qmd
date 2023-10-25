@@ -30,15 +30,18 @@ author:
     bio: |
       Use `IEEEbiographynophoto` and the author name
       as the argument followed by the biography text.
-    note: "Template created June 23, 2023; revised October 17, 2023."
+    note: "Template created June 23, 2023; revised `r format(Sys.Date(),format='%B %d, %Y')`."
 abstract: |
   This document describes the most common article elements and how to use the 
-  `quarto-ieee` class with LaTeX to produce files that are suitable for submission
-  to the IEEE.  
+  `quarto-ieee` class with Pandoc/Quarto-Markdown to produce files that are
+  suitable for submission to IEEE journals.  
   `quarto-ieee` can produce conference, journal, and technical note (correspondence) 
   papers with a suitable choice of class options. 
-keywords: [IEEE, IEEEtran, journal, template]
-
+  It intends to generate PDF and HTML outputs that closely mimick what IEEE would generate.
+keywords: [IEEE, IEEEtran, journal, Quarto, Pandoc, template]
+#funding: 
+funding: 
+  statement: "The `quarto-ieee` template is freely available under the MIT license on github: <https://github.com/dfolio/quarto-ieee>."
 pageheader:
   left: Journal XXX, Month Year
   right: 'D. Folio:  A Sample Article Using quarto-ieee'
@@ -58,39 +61,67 @@ citation:
 
 [T]{.IEEEPARstart}[his]{}
 file is intended to serve as a "sample article file"
-for IEEE journal papers produced under {{< latex >}} using `IEEEtran.cls` version 1.8b and later. 
+for IEEE journal papers produced with (Pandoc/Quarto)-Markdown using `IEEEtran.cls` version 1.8b and later for the PDF output. 
 It is based on `bare_jrnl_new_sample4.tex` provided by IEEE Publication Technology, Staff and available from  <https://template-selector.ieee.org/>.
 The most common elements are covered in the simplified and updated instructions in `New_IEEEtran_how-to.pdf`.
 For less common elements you can refer back to the original `IEEEtran_HOWTO.pdf`. 
-It is assumed that the reader has a basic working knowledge of {{< latex >}} @mittelbach2023latex and of (Pandoc/Quarto)-markdown [@MacFarlane_Pandoc; @Allaire_Quarto_2022] markup.
+It is assumed that the reader has a basic working knowledge of {{< latex >}} @mittelbach2023latex and of (Pandoc/Quarto)-Markdown [@MacFarlane_Pandoc; @Allaire_Quarto_2022] markup.
 
 
 # The Design, Intent, and Limitations of this Templates
 
-The `quarto-ieee` templates are intended to **approximate the final look and page length of the articles/papers** either in PDF output or HTML output. 
+The `quarto-ieee` template is intended to **approximate the final look and page length of the articles/papers** either in PDF output or HTML output. 
 **They are NOT intended to be the final produced work that is displayed in print or on IEEEXplore^®^**.
 They will help to give the authors an approximation of the number of pages and layout that will be in the final version. 
 
+## Unsuported feature and limitations
 Although most of the {{< latex >}} and `IEEEtran.cls` commands and environment are supported, 
 there are some limitations when trying to export to a format other than PDF  (e.g. HTML output).
+For PDF output, the reader can use the {{< latex >}} command directly. However, this may break other output formats.
+\
+It can be can reported the following limitations of the  `quarto-ieee` template:
+- Several authors with same affiliation produce weird output. 
+  In such case, it is recommended to use `note` and `tex-author-no-affiliation: true`.
+- For `PDF` output
+  - `quarto-ieee` use a hack to handle the `longtable` issue with  2-column {{< latex >}} documents[^issues-1023].
+    But, in some cases, a page overflow may occur (see also @sec-tables).
+- For `HTML` output
+  - The default Quarto toc is used, so the table of contents (toc) display is not the same as on [IEEEXplore<sup>®</sup>].
+  - Footnote are put at the end of document, while on [IEEEXplore<sup>®</sup>] there are placed in the accordion.
+  - Figures are not placed in the accordion.
+  - [IEEEXplore<sup>®</sup>] specifics (e.g. citation metrics, etc.)
+  - The `HTML` output is a  Quarto citeable article @quarto-citation, so a citation appendix is automatically added to the article end.
+  
+
+## Contributing
+
+If you want to improve the `quarto-ieee` template or need some specific features do not hesitate to submit Pull Request[^PR] (it is considered good practice to open an issue for discussion before working on a pull request for a new feature).
+
+[^PR]: Go to the PR page: <https://github.com/dfolio/quarto-ieee/pulls>
+
 
 # Some random text
 For some of the remainder of this sample we will use dummy text to fill out paragraphs rather than use live text that may violate a copyright.
-
+\IEEEpubidadjcol\
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis cursus nisl eget tempor porta. Proin dapibus dictum quam a commodo. Mauris congue scelerisque eros a porta. Proin blandit nulla sapien, et pretium justo dictum non. Vivamus ultricies, elit eu posuere placerat, sapien est condimentum nisl, at tincidunt tortor dolor ac ligula. Suspendisse pulvinar libero quis eros finibus sodales. Vivamus mattis est eget imperdiet luctus. Morbi eget posuere metus. Nam egestas elit lectus, eu tincidunt odio viverra sed. Sed sit amet metus rutrum, ultricies elit in, finibus felis. Integer lobortis dui ante, eget placerat lorem laoreet eu.
 
 Nullam mi ligula, luctus a orci ut, tincidunt varius augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec sed sem risus. Nam eleifend ultrices elit, vitae posuere tellus interdum et. Nam id nisl at elit malesuada malesuada. Suspendisse viverra ipsum libero, vel pharetra sem maximus sed. Nunc vel est fringilla, rutrum diam eu, egestas quam. Vivamus lobortis blandit velit, commodo finibus mauris. Quisque vel lacus ipsum. Pellentesque quis nulla ipsum.
 
 Aenean in hendrerit quam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam tincidunt vehicula dignissim. In quis aliquet lectus, ac vestibulum elit. Quisque a magna viverra quam viverra faucibus. Nulla ornare tortor at mollis viverra. Curabitur vel porta dui. Etiam ipsum elit, egestas eget lacus nec, laoreet iaculis lacus. In iaculis risus ac tincidunt viverra. Maecenas tempor iaculis odio quis aliquet.
-\IEEEpubidadjcol
+\
 Maecenas ac posuere turpis. Fusce est dui, dapibus sed odio eget, eleifend facilisis felis. Nam gravida varius enim, ornare tincidunt urna ullamcorper ut. Donec sit amet eros ac lacus placerat rutrum ut non dolor. Nulla tincidunt nunc massa, sed euismod dui feugiat vitae. Integer tempus risus rutrum tellus interdum, eu aliquet sapien rutrum. Nunc feugiat varius lacus sed laoreet. Integer euismod tellus nisi, id scelerisque sem sagittis eu. Suspendisse at orci vel neque varius tempor nec vitae odio. Integer elementum elementum fermentum. Morbi in turpis cursus, lacinia arcu et, semper orci.
 
-Proin pharetra eros tellus, condimentum tempor ex commodo sit amet. Aliquam nec nisl mattis erat convallis semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam suscipit metus at vehicula ultricies. Morbi quis ullamcorper sem. Nam gravida blandit lacus id imperdiet. Morbi lacinia libero risus, vel fringilla risus ullamcorper sed. Nulla in rutrum quam. Phasellus vitae ante eleifend, semper lorem faucibus, consectetur lorem. Proin sed urna quis nunc fringilla bibendum sed sed ipsum. Praesent et erat sed purus commodo blandit. Aliquam gravida consequat mi, a egestas tellus varius a. Donec eu nulla suscipit, feugiat eros commodo, euismod enim.
+# Front matter
+
+Most Quarto's authors and affiliations schemes  @quarto-funding are supported in the YAML front matter to render authors as requested by IEEE journals in PDF and HTML outputs.
+When provided to an author, the `note` entry is rendered as a `\thanks{}` in `PDF` output (ignored in `HTML` output).
+Additionally, the reader may add to an author a `photo: path/to/photograph.png` with a `bio` metadata entries to generate a `IEEEbiography`, while a sole `bio` generates a `IEEEbiographynophoto` (these features is used both in `PDF` and `HTML` outputs).
 \
-Ipsum habitant inceptos volutpat cras nostra, proin commodo eget varius. Volutpat arcu praesent, nisi vulputate convallis inceptos consequat. 
-Aenean hendrerit sociis congue nulla ultricies, at tempor sapien nullam ullamcorper. 
+The `funding` entry is also used in both PDF and HTML outputs @quarto-funding.
+At version v1.1.1, only the `funding.statement` is used.
+Similarly, `citation` entry is supported to make the HTML output a "_citeable article_" @quarto-citation.
 
-
+ 
 # Some Common Elements
 ## Sections and Subsections
 As stated in the `IEEEtran` template enumeration of section headings is desirable, but not required.
@@ -100,18 +131,18 @@ References and Acknowledgment headings are unlike all other section headings in 
 They are never enumerated. 
 They are simply primary headings without labels, regardless of whether the other headings in the article are enumerated. 
 
-The following @sec-markdown shows some basic usage and capabilities of `quarto-ieee`.
+The following @sec-Markdown shows some basic usage and capabilities of `quarto-ieee`.
 
-## Markdown basics {#sec-markdown}
-The reader can easily find many documentations on how to write using the Markdown syntax.
-The `quarto-ieee` template relies mainly on the Markdown markup supported by Quarto[^quarto-markdown], which is build based on Pandoc [@MacFarlane_Pandoc; @Allaire_Quarto_2022].
-Below are some basic examples of usage of Markdown markup.
+## Markdown basics {#sec-Markdown}
+The reader can easily find many documentations on how to write using the (Pandoc/Quarto) Markdown syntax.
+The `quarto-ieee` template relies mainly on the Markdown markup supported by Quarto @quarto-markdonw, which is build based on Pandoc [@MacFarlane_Pandoc; @Allaire_Quarto_2022].
+Below are some basic examples of usage of the Markdown markup (to save space, it is better to consult the original Quarto document `template.qmd`).
 
-[^quarto-markdown]: See Quarto markdown basics at <https://quarto.org/docs/authoring/markdown-basics.html>.
 
 ### Display equations
 To write equations use `$` delimiters for inline formula or `$$` for block one.
-To number the equations, it is recommended to use classic equation environments provided by {{< latex >}} and to use `\eqref{}` (or `\ref{}`) for cross-referencing.
+To number the equations, it is recommended to use classic equation environments 
+provided by {{< latex >}} and to use `\eqref{}` (or `\ref{}`) for cross-referencing.
 For example:
 \begin{equation}\label{eq:1}
 {{\chi}_a}=\text{diag}\left(\frac{{\chi}}{1+n_a{\chi}},\frac{{\chi}}{1+n_b{\chi}},\frac{{\chi}}{1+n_b{\chi}}\right),
@@ -132,7 +163,6 @@ The above equation is cross-referenced as \eqref{eq:1}, \eqref{eq:2}, \eqref{eq:
 For now, avoid using the Quarto cross-references that use of `$$ $$` with `#eq-` label.
 It works properly only for PDF output, but there are some issues with HTML[^issues-2275] output.
 
-[^issues-2275]: <https://github.com/quarto-dev/quarto-cli/issues/2275>
 
 ::: {.remark}
 `quarto-ieee` template also supports the [`mhchem`](https://ctan.org/pkg/mhchem) (for chemical equation) 
@@ -181,8 +211,9 @@ An example of solution environment.
 
 
 ### Figures
-
-It is recommended to use div block with `#fig-` label to embed your Figures.
+An image with nonempty alt text will be rendered as a figure with a caption with Pandoc and Quarto.
+Quarto includes a different features to simplify the use of figures and subfigures.
+Here, it is recommended to use div block with `#fig-` label to embed your Figures.
 
 
 :::{#fig-1}
@@ -219,18 +250,18 @@ plot(cars)
 ```
 
 
-### Tables
+### Tables {#sec-tables}
 
-For tables produced by executable code cells, include a label with a `#tbl-` prefix to make them cross-referenceable. 
+Similarly, many kind of tables may be used with Pandoc and Quarto.
+The latter also includes different features to simplify the table output.
+To make tables cross-referenceable use a label with a `#tbl-` prefix. 
 \
-It is recommended to avoid using the commonly used single markdown table known as a 'pipe table'. 
-In fact, Pandoc markdown uses the {{< latex >}} `longtable` package, which does not support the two-column mode[^issue-1023], which is required for most `IEEEtran` journals.
+However, it is recommended to avoid using the commonly used single Markdown table known as a 'pipe table'. 
+In fact, Pandoc Markdown uses the {{< latex >}} `longtable` package, which does not support the two-column mode, which is required for most `IEEEtran` journals.
 `quarto-ieee` uses a hack to temporarily switch to one-column mode. 
 However, this hack may break the page layout.
 To overcome this issue, a basic way is to use code cells (as for @tbl-other).
-Quarto is a multi-language and it uses  `Knitr` to execute `R` code and can execute  Python code blocks within markdown.
-
-[^issue-1023]: <https://github.com/jgm/pandoc/issues/1023>
+Quarto is a multi-language and it uses  `Knitr` to execute `R` code and can execute  Python code blocks within Markdown.
 
 ::: {#tbl-panel layout-ncol=2}
 | Col1 | Col2 | Col3 |
@@ -259,6 +290,7 @@ There is also @tbl-other.
 #| label: tbl-other
 #| tbl-cap: "A table"
 #| tbl.env: tabular
+#| fig-pos: h
 
 options(knitr.table.format = function() {if (knitr::is_latex_output()) 'latex' else 'pandoc'})
 dt <- data.frame(Col1=c('A','B','C'),
@@ -267,6 +299,15 @@ dt <- data.frame(Col1=c('A','B','C'),
 
 knitr::kable(head(dt), booktabs = TRUE)
 ```
+
+## Bibliography
+
+IEEE journal should normally use IEEEtran[^bibtex] {{< bibtex >}} style.
+Nevertheless, Pandoc and Quarto do support {{< bibtex >}} with natbib or biblatex. However, neither is officially recommended for normal IEEE use.
+For this reason, `quarto-ieee` uses `citeproc` with the `ieee` CSL style sheet.
+
+[^bibtex]: IEEEtran BibTeX  style support  page is: <http://www.michaelshell.org/tex/ieeetran/bibtex/>
+
 
 # Conclusions
 The conclusion goes here.
@@ -279,10 +320,20 @@ your work on this article.
 
 []{.appendix options="An Appendix"}
 
+
 Use `[]{.appendix options="An Appendix"}` markup if you have a single appendix.
 `IEEEtran` state that to do not use `\section{}` anymore after `\appendix`.
+
 
 
 ::: {.content-visible when-format="pdf"}
 # References {-}
 :::
+
+
+
+[^issues-1023]: ["_[longtable not compatible with 2-column LaTeX documents](https://github.com/jgm/pandoc/issues/1023>)_", 
+
+[^issues-2275]: See the issue here <https://github.com/quarto-dev/quarto-cli/issues/2275>
+
+[IEEEXplore<sup>®</sup>]: <https://ieeexplore.ieee.org/>
