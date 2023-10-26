@@ -1,0 +1,6 @@
+project:
+  output-dir: .
+
+formats:
+  ieee-pdf: default
+  ieee-html: default
