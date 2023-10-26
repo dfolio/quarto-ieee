@@ -37,6 +37,7 @@ contributes:
       toc: false
       df-print: kable
       latex-auto-install: true
+      template: ieee-template.tex
       template-partials:
         - partials/doc-class.tex
         - partials/title.tex
