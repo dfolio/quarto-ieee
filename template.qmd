@@ -135,7 +135,7 @@ The following @sec-Markdown shows some basic usage and capabilities of `quarto-i
 
 ## Markdown basics {#sec-Markdown}
 The reader can easily find many documentations on how to write using the (Pandoc/Quarto) Markdown syntax.
-The `quarto-ieee` template relies mainly on the Markdown markup supported by Quarto @quarto-markdonw, which is build based on Pandoc [@MacFarlane_Pandoc; @Allaire_Quarto_2022].
+The `quarto-ieee` template relies mainly on the Markdown markup supported by Quarto @quarto-markdown, which is build based on Pandoc [@MacFarlane_Pandoc; @Allaire_Quarto_2022].
 Below are some basic examples of usage of the Markdown markup (to save space, it is better to consult the original Quarto document `template.qmd`).
 
 
@@ -233,22 +233,6 @@ An example with sub-figure.
 
 
 The figures is cross-referenced as @fig-2  and even the sub-figures as @fig-2b.
-
-:::{.remark}
-There is no markup for double-column floating figures.
-The only workaround is to change the environment of the `knitr` chunk option with ` #| fig.env: figure*`.
-:::
-
-```{r}
-#| label: fig-twocolumn
-#| fig.env: figure*
-#| fig-cap: "Example of double column floating figures (in PDF)."
-#| warning: false
-#| echo: false
-
-plot(cars)
-```
-
 
 ### Tables {#sec-tables}
 
