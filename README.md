@@ -1,5 +1,10 @@
 # IEEE Transaction Quarto journal template
 
+:::{.center}
+![Tested on Quarto-1.3](https://img.shields.io/badge/quarto-1.3-blue?label=quarto)
+![Tested on Quarto-1.4](https://img.shields.io/badge/quarto-1.4-blue?label=quarto)
+:::
+
 ## Overview
 
 `quarto-ieee` provide a [`IEEEtran`][`IEEEtran.cls`] template for [journal format](https://quarto.org/docs/journals/formats.html) with your [Quarto](https://quarto.org/) documents.
@@ -69,7 +74,7 @@ pageheader:
 ### Examples
 
 The source code for a minimal sample document is given in [template.qmd](template.qmd).
-You have a preview of the rendering of this basic template at [template.pdf](template.pdf) or  [template.html](template.html). \
+You have a preview of the rendering of this basic template at [template.pdf](https://dfolio.fr/posts/quarto-ieee/template.pdf) or  [template.html](https://dfolio.fr/posts/quarto-ieee/template.html). \
 Incomplete articles (i.e. more advanced examples) are available in the `examples` folder.
 
 ### Unsuported feature and limitations
