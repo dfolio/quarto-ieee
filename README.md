@@ -1,9 +1,9 @@
 # IEEE Transaction Quarto journal template
 
-:::{.center}
+<div class="center">
 ![Tested on Quarto-1.3](https://img.shields.io/badge/quarto-1.3-blue?label=quarto)
 ![Tested on Quarto-1.4](https://img.shields.io/badge/quarto-1.4-blue?label=quarto)
-:::
+</div>
 
 ## Overview
 
