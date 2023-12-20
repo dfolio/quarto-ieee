@@ -8,10 +8,10 @@ quarto-ieee.Rproj
 
 IEEEtran.cls
 README.html
-template_files/
-template.tex
-template.html
-template.pdf
+#template_files/
+#template.tex
+#template.html
+#template.pdf
 
 examples/*.html
 examples/*.pdf

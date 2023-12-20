@@ -267,7 +267,7 @@ Quarto is a multi-language and it uses  `Knitr` to execute `R` code and can exec
 Main Caption 
 :::
 
-The figures is cross-referenced as @tbl-panel for details, especially @tbl-second.
+The Tables are cross-referenced as @tbl-panel for details, especially @tbl-second.
 There is also @tbl-other.
 
 ```{r}

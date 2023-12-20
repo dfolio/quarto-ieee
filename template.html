@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.429">
+<meta name="generator" content="quarto-1.4.515">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -319,7 +319,7 @@ y = mx + b
 <div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="fig1.png" class="img-fluid figure-img" style="width:30.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Fig.&nbsp;1: An example of figure.
 </figcaption>
 </figure>
@@ -334,7 +334,7 @@ Fig.&nbsp;1: An example of figure.
 <div aria-describedby="fig-2a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="fig1.png" id="fig-2a" class="img-fluid figure-img" data-ref-parent="fig-2">
 </div>
-<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-2a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-2a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a)
 </figcaption>
 </figure>
@@ -346,7 +346,7 @@ Fig.&nbsp;1: An example of figure.
 <div aria-describedby="fig-2b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="fig1.png" id="fig-2b" class="img-fluid figure-img" data-ref-parent="fig-2">
 </div>
-<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-2b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-2b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b)
 </figcaption>
 </figure>
@@ -354,7 +354,7 @@ Fig.&nbsp;1: An example of figure.
 </div>
 </div>
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Fig.&nbsp;2: An example with sub-figure.
 </figcaption>
 </figure>
@@ -367,7 +367,7 @@ Fig.&nbsp;2: An example with sub-figure.
 However, it is recommended to avoid using the commonly used single Markdown table known as a ‘pipe table’. In fact, Pandoc Markdown uses the <span class="math inline">\(\LaTeX\)</span> <code>longtable</code> package, which does not support the two-column mode, which is required for most <code>IEEEtran</code> journals. <code>quarto-ieee</code> uses a hack to temporarily switch to one-column mode. However, this hack may break the page layout. To overcome this issue, a basic way is to use code cells (as for <a href="#tbl-other" class="quarto-xref">Table&nbsp;2</a>). Quarto is a multi-language and it uses <code>Knitr</code> to execute <code>R</code> code and can execute Python code blocks within Markdown.</p>
 <div id="tbl-panel" class="quarto-layout-panel anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="table quarto-float-caption quarto-float-tbl" id="tbl-panel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-panel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Main Caption
 </figcaption>
 <div aria-describedby="tbl-panel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -375,7 +375,7 @@ Table&nbsp;1: Main Caption
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-panel" style="flex-basis: 50.0%;justify-content: center;">
 <div id="tbl-first" class="anchored">
 <figure class="quarto-float quarto-subfloat-tbl figure">
-<figcaption class="table quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-first-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-first-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) First Table
 </figcaption>
 <div aria-describedby="tbl-first-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -412,7 +412,7 @@ Table&nbsp;1: Main Caption
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-panel" style="flex-basis: 50.0%;justify-content: center;">
 <div id="tbl-second" class="anchored">
 <figure class="quarto-float quarto-subfloat-tbl figure">
-<figcaption class="table quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-second-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-second-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Second Table
 </figcaption>
 <div aria-describedby="tbl-second-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -450,11 +450,11 @@ Table&nbsp;1: Main Caption
 </div>
 </figure>
 </div>
-<p>The figures is cross-referenced as <a href="#tbl-panel" class="quarto-xref">Table&nbsp;1</a> for details, especially <a href="#tbl-second" class="quarto-xref">Table&nbsp;1 (b)</a>. There is also <a href="#tbl-other" class="quarto-xref">Table&nbsp;2</a>.</p>
+<p>The Tables are cross-referenced as <a href="#tbl-panel" class="quarto-xref">Table&nbsp;1</a> for details, especially <a href="#tbl-second" class="quarto-xref">Table&nbsp;1 (b)</a>. There is also <a href="#tbl-other" class="quarto-xref">Table&nbsp;2</a>.</p>
 <div class="cell" data-tbl.env="tabular">
 <div id="tbl-other" class="cell anchored" data-tbl.env="tabular">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="table quarto-float-caption quarto-float-tbl" id="tbl-other-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-other-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2: A table
 </figcaption>
 <div aria-describedby="tbl-other-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -773,8 +773,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
         }
         typesetMath(container);
         return container.innerHTML
