@@ -77,6 +77,8 @@ Incomplete articles (i.e. more advanced examples) are available in the `examples
 
 ### Unsuported feature and limitations
 
+- If you are using [Quarto](https://quarto.org), it is strongly recommended to use TexLive from the LaTeX distribution instead of the one provided by your Linux distribution.
+  Otherwise, you may encounter a missing package problem.
 - Several authors with same affiliation. 
   In such case use `note` and `tex-author-no-affiliation: true`.
 - For `PDF` output
@@ -90,13 +92,11 @@ Incomplete articles (i.e. more advanced examples) are available in the `examples
   - The `HTML` output is a  [Quarto citeable article](https://quarto.org/docs/authoring/create-citeable-articles.html), so a citation appendix is automatically added to the article end.
 
 [^longtable]: "_[longtable not compatible with 2-column LaTeX documents](https://github.com/jgm/pandoc/issues/1023>)_", see this issue <https://github.com/jgm/pandoc/issues/1023>
-
   
 > [!IMPORTANT]
-> The `quarto-ieee` template are intended to **approximate the final look and page length of the articles/papers** either in `PDF` output or `HTML` output. 
+> The `quarto-ieee` template are intended to **only approximate the final look and page length of the articles/papers** either in `PDF` output or `HTML` output. 
 > **They are NOT intended to be the final produced work that is displayed in print or on [IEEEXplore<sup>®</sup>]**.
 > They will help to give the authors an approximation of the number of pages and layout that will be in the final version. 
-
 
 ### Contributing
 
