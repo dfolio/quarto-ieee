@@ -52,7 +52,7 @@ For the  `HTML` output, `quarto-ieee` tries to mimic as closely as possible the 
 
 ### Front Matter
 
-Most Quarto's [authors and affiliations scheme](https://quarto.org/docs/journals/authors.html) are supported.
+Most [Quarto](https://quarto.org)'s [authors and affiliations scheme](https://quarto.org/docs/journals/authors.html) are supported.
 When provided, `note` is used as `\thanks{}` in `PDF` output (ignored in `HTML` output).
 Additionally, `photo` with `bio` allows generating a `IEEEbiography`, while a sole `bio` generates a `IEEEbiographynophoto` (this is used both in `PDF` and `HTML` outputs).
 \
@@ -72,10 +72,10 @@ pageheader:
 ### Examples
 
 The source code for a minimal sample document is given in [template.qmd](template.qmd).
-You have a preview of the rendering of this basic template at [template.pdf](https://dfolio.fr/posts/quarto-ieee/template.pdf) or  [template.html](https://dfolio.fr/posts/quarto-ieee/template.html). \
+You have a preview of the rendering of this basic template at [template.pdf](https://github.com/dfolio/quarto-ieee/blob/main/template.pdf) or  [template.html](https://htmlpreview.github.io/?https://github.com/dfolio/quarto-ieee/blob/master/template.html). \
 Incomplete articles (i.e. more advanced examples) are available in the `examples` folder.
 
-### Unsuported feature and limitations
+### Unsuported features and limitations
 
 - If you are using [Quarto](https://quarto.org), it is strongly recommended to use TexLive from the LaTeX distribution instead of the one provided by your Linux distribution.
   Otherwise, you may encounter a missing package problem.
