@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.429">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="David Folio">
+<meta name="author" content="John Doe">
+<meta name="dcterms.date" content="2023-06-23">
+<meta name="keywords" content="IEEE, IEEEtran, journal, Quarto, Pandoc, template">
+
+<title>A Sample Article Using quarto-ieee for IEEE Journal and Transactions</title><style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="template_files/libs/clipboard/clipboard.min.js"></script>
+<script src="template_files/libs/quarto-html/quarto.js"></script>
+<script src="template_files/libs/quarto-html/popper.min.js"></script>
+<script src="template_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="template_files/libs/quarto-html/anchor.min.js"></script>
+<link href="template_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="template_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="template_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="template_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="template_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<!-- This is what works with Quarto -->
+<script>
+  MathJax = {
+    loader: {load: ['[tex]/mhchem', '[tex]/physics']},
+    tex: {
+      tags: 'ams',  // should be 'ams', 'none', or 'all'
+      packages: {'[+]': ['mhchem','physics']}
+    }
+  };
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<meta name="citation_title" content="A Sample Article Using `quarto-ieee` for IEEE Journal and Transactions">
+<meta name="citation_abstract" content="This document describes the most common article elements and how to use the
+`quarto-ieee` class with Pandoc/Quarto-Markdown to produce files that are
+suitable for submission to IEEE journals.
+`quarto-ieee` can produce conference, journal, and technical note (correspondence)
+papers with a suitable choice of class options.
+It intends to generate PDF and HTML outputs that closely mimick what IEEE would generate.
+">
+<meta name="citation_keywords" content="IEEE,IEEEtran,journal,Quarto,Pandoc,template">
+<meta name="citation_author" content="David Folio">
+<meta name="citation_author" content="John Doe">
+<meta name="citation_publication_date" content="2023-06-23">
+<meta name="citation_cover_date" content="2023-06-23">
+<meta name="citation_year" content="2023">
+<meta name="citation_online_date" content="2023-06-23">
+<meta name="citation_fulltext_html_url" content="https://github.com/dfolio/quarto-ieee">
+<meta name="citation_pdf_url" content="https://github.com/dfolio/quarto-ieee/template.pdf">
+<meta name="citation_language" content="en">
+<meta name="citation_firstpage" content="1">
+<meta name="citation_lastpage" content="3">
+<meta name="citation_journal_title" content="GitHUB">
+<meta name="citation_reference" content="citation_title=The LaTeX Companion;,citation_author=F. Mittelbach;,citation_author=U. Fischer;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_isbn=978-0-201-36300-5;,citation_series_title=Addison-Wesley Series on Tools et Techniques for Computer Typesetting;">
+<meta name="citation_reference" content="citation_title=Pandoc;,citation_author=John MacFarlane;,citation_author=Albert Krewinkel;,citation_author=Jesse Rosenthal;,citation_fulltext_html_url=https://github.com/jgm/pandoc;">
+<meta name="citation_reference" content="citation_title=Quarto;,citation_author=J. J. Allaire;,citation_author=Charles Teague;,citation_author=Carlos Scheidegger;,citation_author=Yihui Xie;,citation_author=Christophe Dervieux;,citation_publication_date=2022-01;,citation_cover_date=2022-01;,citation_year=2022;,citation_fulltext_html_url=https://github.com/quarto-dev/quarto-cli;,citation_doi=10.5281/zenodo.5960048;">
+<meta name="citation_reference" content="citation_title=Quarto - Markdown Basics;,citation_fulltext_html_url=https://quarto.org/docs/authoring/markdown-basics;,citation_language=en-US;,citation_publisher=Quarto;">
+<meta name="citation_reference" content="citation_title=Quarto - Front Matter;,citation_fulltext_html_url=https://quarto.org/docs/authoring/front-matter.html#funding;,citation_language=en-US;,citation_publisher=Quarto;">
+<meta name="citation_reference" content="citation_title=Quarto - Authors &amp;amp;amp; Affiliations;,citation_fulltext_html_url=https://quarto.org/docs/journals/authors.html;,citation_language=en-US;,citation_publisher=Quarto;">
+<meta name="citation_reference" content="citation_title=Quarto - Creating Citeable Articles;,citation_fulltext_html_url=https://quarto.org/docs/authoring/create-citeable-articles.html;,citation_language=en-US;,citation_publisher=Quarto;">
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Document Sections</h2>
+   
+  <ul>
+  <li><a href="#sec-intro" id="toc-sec-intro" class="nav-link active" data-scroll-target="#sec-intro"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#the-design-intent-and-limitations-of-this-templates" id="toc-the-design-intent-and-limitations-of-this-templates" class="nav-link" data-scroll-target="#the-design-intent-and-limitations-of-this-templates"><span class="header-section-number">2</span> The Design, Intent, and Limitations of this Templates</a>
+  <ul class="collapse">
+  <li><a href="#unsuported-feature-and-limitations" id="toc-unsuported-feature-and-limitations" class="nav-link" data-scroll-target="#unsuported-feature-and-limitations"><span class="header-section-number">2.1</span> Unsuported feature and limitations</a></li>
+  <li><a href="#contributing" id="toc-contributing" class="nav-link" data-scroll-target="#contributing"><span class="header-section-number">2.2</span> Contributing</a></li>
+  </ul></li>
+  <li><a href="#some-random-text" id="toc-some-random-text" class="nav-link" data-scroll-target="#some-random-text"><span class="header-section-number">3</span> Some random text</a></li>
+  <li><a href="#front-matter" id="toc-front-matter" class="nav-link" data-scroll-target="#front-matter"><span class="header-section-number">4</span> Front matter</a></li>
+  <li><a href="#some-common-elements" id="toc-some-common-elements" class="nav-link" data-scroll-target="#some-common-elements"><span class="header-section-number">5</span> Some Common Elements</a>
+  <ul class="collapse">
+  <li><a href="#sections-and-subsections" id="toc-sections-and-subsections" class="nav-link" data-scroll-target="#sections-and-subsections"><span class="header-section-number">5.1</span> Sections and Subsections</a></li>
+  <li><a href="#sec-Markdown" id="toc-sec-Markdown" class="nav-link" data-scroll-target="#sec-Markdown"><span class="header-section-number">5.2</span> Markdown basics</a>
+  <ul class="collapse">
+  <li><a href="#display-equations" id="toc-display-equations" class="nav-link" data-scroll-target="#display-equations"><span class="header-section-number">5.2.1</span> Display equations</a></li>
+  <li><a href="#theorems-proofs-and-remarks" id="toc-theorems-proofs-and-remarks" class="nav-link" data-scroll-target="#theorems-proofs-and-remarks"><span class="header-section-number">5.2.2</span> Theorems, Proofs and Remarks</a></li>
+  <li><a href="#figures" id="toc-figures" class="nav-link" data-scroll-target="#figures"><span class="header-section-number">5.2.3</span> Figures</a></li>
+  <li><a href="#sec-tables" id="toc-sec-tables" class="nav-link" data-scroll-target="#sec-tables"><span class="header-section-number">5.2.4</span> Tables</a></li>
+  </ul></li>
+  <li><a href="#bibliography" id="toc-bibliography" class="nav-link" data-scroll-target="#bibliography"><span class="header-section-number">5.3</span> Bibliography</a></li>
+  </ul></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions"><span class="header-section-number">6</span> Conclusions</a></li>
+  <li><a href="#acknowledgment" id="toc-acknowledgment" class="nav-link" data-scroll-target="#acknowledgment">Acknowledgment</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="template.pdf"><i class="bi bi-file-pdf"></i>PDF (ieee)</a></li></ul></div></nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</div>
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full" itemprop="headline">
+<div class="col-12 page-columns page-full">
+<div class="quarto-header page-columns page-full">
+
+  <div class="quarto-title column-body">
+  <div class="container col">
+    <h1 class="title" itemprop="headline">A Sample Article Using <code>quarto-ieee</code> for IEEE Journal and Transactions</h1>
+    
+    <div class="container">
+    <div class="mb-3 mt-2 d-grid gap-3 d-md-flex">
+      
+      <a href="#citation" class="btn btn-outline-primary" role="button">Cite This</a>
+      <a href="https://github.com/dfolio/quarto-ieee/blob/main/template.pdf" class="btn btn-danger text-white" role="button"><i class="bi bi-file-pdf" rel="img" aria-label="PDF"></i>PDF</a>
+    </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="quarto-subheader">
+  <div class="quarto-author-banner p-0">
+  <div class="d-flex align-items-center flex-nowrap">
+        <div class="quarto-author overflow-hidden">
+    <div class="d-flex flex-nowrap">
+      <div class="quarto-author-contents align-items-center text-truncate pe-0">
+                <span class="author-info"><a href="https://dfolio.fr/" title="INSA Centre Val de Loire, Laboratoire Prisme, Unknown affiliation, ">David Folio</a><a href="https://orcid.org/0000-0001-9430-6091" class="quarto-title-author-orcid px-1" target="orcid.widget" rel="me noopener noreferrer"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width: 1em; margin-inline-start: 0.5em" alt="ORCID iD icon"></a></span> and&nbsp;<span class="author-info">John Doe</span>
+              </div>
+    </div>
+    </div>
+    
+    <div class="d-none d-md-flex align-items-center">
+    <div class="author-all d-none d-md-block">
+      <a href="#authors" class="">All Authors</a>
+    </div>
+    </div>
+  </div>
+  </div>
+  </div>
+
+</div>
+</div>
+<hr class="px-3 mt-2">
+</header>
+<div class="quarto-main-body container p-0">
+<section class="quarto-abstract d-flex">
+<div class="container">
+<div class="quarto-abstract-block d-flex row g-0">
+<div class="col-12">
+  <div class="abstract mb-3">
+    <strong class="abstract-title">Abstract:</strong>
+    <p>This document describes the most common article elements and how to use the <code>quarto-ieee</code> class with Pandoc/Quarto-Markdown to produce files that are suitable for submission to IEEE journals. <code>quarto-ieee</code> can produce conference, journal, and technical note (correspondence) papers with a suitable choice of class options. It intends to generate PDF and HTML outputs that closely mimick what IEEE would generate.</p>
+  </div>
+</div>
+</div>
+
+<div class="citation-meta published-in pb-3">
+<strong class="citation-title">Published in:</strong> GitHUB
+(
+
+2023-06-23)
+
+</div>
+
+<div class="container g-0 pt-3">
+<div class="grid">
+  <div class="g-col-6">
+        <div class="citation-meta pb-3"><strong class="citation-title">Page(s):</strong> 1-3</div>
+            <div class="citation-meta pb-3"><strong class="citation-title">Date of Publication:</strong> 23 June 2023</div>  </div>
+  <div class="g-col-6">
+    
+    
+  </div>
+
+    <div class="g-col-12 pb-3">
+    <div class="funding">
+      <a class="btn p-0" data-bs-toggle="collapse" href="#collapseFA" role="button" aria-expanded="false" aria-controls="collapseFA"><div class="expand_caret caret"><i class="bi bi-caret-right-fill"></i></div><strong>Funding Agency</strong></a>
+      <div class="collapse" id="collapseFA">
+        <div class="funding-info">
+        The <code>quarto-ieee</code> template is freely available under the MIT license on github: <a href="https://github.com/dfolio/quarto-ieee" class="uri">https://github.com/dfolio/quarto-ieee</a>.
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+</div>
+</section>
+
+
+<div class="quarto-body-content">
+<section id="sec-intro" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<p><span class="IEEEPARstart">T</span><span>his</span> file is intended to serve as a “sample article file” for IEEE journal papers produced with (Pandoc/Quarto)-Markdown using <code>IEEEtran.cls</code> version 1.8b and later for the PDF output. It is based on <code>bare_jrnl_new_sample4.tex</code> provided by IEEE Publication Technology, Staff and available from <a href="https://template-selector.ieee.org/" class="uri">https://template-selector.ieee.org/</a>. The most common elements are covered in the simplified and updated instructions in <code>New_IEEEtran_how-to.pdf</code>. For less common elements you can refer back to the original <code>IEEEtran_HOWTO.pdf</code>. It is assumed that the reader has a basic working knowledge of <span class="math inline">\(\LaTeX\)</span> <span class="citation" data-cites="mittelbach2023latex"><a href="#ref-mittelbach2023latex" role="doc-biblioref">[1]</a></span> and of (Pandoc/Quarto)-Markdown <span class="citation" data-cites="MacFarlane_Pandoc Allaire_Quarto_2022"><a href="#ref-MacFarlane_Pandoc" role="doc-biblioref">[2]</a>, <a href="#ref-Allaire_Quarto_2022" role="doc-biblioref">[3]</a></span> markup.</p>
+</section>
+<section id="the-design-intent-and-limitations-of-this-templates" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> The Design, Intent, and Limitations of this Templates</h1>
+<p>The <code>quarto-ieee</code> template is intended to <strong>approximate the final look and page length of the articles/papers</strong> either in PDF output or HTML output. <strong>They are NOT intended to be the final produced work that is displayed in print or on IEEEXplore<sup>®</sup></strong>. They will help to give the authors an approximation of the number of pages and layout that will be in the final version.</p>
+<section id="unsuported-feature-and-limitations" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="unsuported-feature-and-limitations"><span class="header-section-number">2.1</span> Unsuported feature and limitations</h2>
+<p>Although most of the <span class="math inline">\(\LaTeX\)</span> and <code>IEEEtran.cls</code> commands and environment are supported, there are some limitations when trying to export to a format other than PDF (e.g.&nbsp;HTML output). For PDF output, the reader can use the <span class="math inline">\(\LaTeX\)</span> command directly. However, this may break other output formats.<br>
+It can be can reported the following limitations of the <code>quarto-ieee</code> template: - Several authors with same affiliation produce weird output. In such case, it is recommended to use <code>note</code> and <code>tex-author-no-affiliation: true</code>. - For <code>PDF</code> output - <code>quarto-ieee</code> use a hack to handle the <code>longtable</code> issue with 2-column <span class="math inline">\(\LaTeX\)</span> documents<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. But, in some cases, a page overflow may occur (see also <a href="#sec-tables" class="quarto-xref">Section&nbsp;5.2.4</a>). - For <code>HTML</code> output - The default Quarto toc is used, so the table of contents (toc) display is not the same as on <a href="https://ieeexplore.ieee.org/">IEEEXplore<sup>®</sup></a>. - Footnote are put at the end of document, while on <a href="https://ieeexplore.ieee.org/">IEEEXplore<sup>®</sup></a> there are placed in the accordion. - Figures are not placed in the accordion. - <a href="https://ieeexplore.ieee.org/">IEEEXplore<sup>®</sup></a> specifics (e.g.&nbsp;citation metrics, etc.) - The <code>HTML</code> output is a Quarto citeable article <span class="citation" data-cites="quarto-citation"><a href="#ref-quarto-citation" role="doc-biblioref">[4]</a></span>, so a citation appendix is automatically added to the article end.</p>
+</section>
+<section id="contributing" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="contributing"><span class="header-section-number">2.2</span> Contributing</h2>
+<p>If you want to improve the <code>quarto-ieee</code> template or need some specific features do not hesitate to submit Pull Request<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> (it is considered good practice to open an issue for discussion before working on a pull request for a new feature).</p>
+</section>
+</section>
+<section id="some-random-text" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Some random text</h1>
+<p>For some of the remainder of this sample we will use dummy text to fill out paragraphs rather than use live text that may violate a copyright. <br>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis cursus nisl eget tempor porta. Proin dapibus dictum quam a commodo. Mauris congue scelerisque eros a porta. Proin blandit nulla sapien, et pretium justo dictum non. Vivamus ultricies, elit eu posuere placerat, sapien est condimentum nisl, at tincidunt tortor dolor ac ligula. Suspendisse pulvinar libero quis eros finibus sodales. Vivamus mattis est eget imperdiet luctus. Morbi eget posuere metus. Nam egestas elit lectus, eu tincidunt odio viverra sed. Sed sit amet metus rutrum, ultricies elit in, finibus felis. Integer lobortis dui ante, eget placerat lorem laoreet eu.</p>
+<p>Nullam mi ligula, luctus a orci ut, tincidunt varius augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec sed sem risus. Nam eleifend ultrices elit, vitae posuere tellus interdum et. Nam id nisl at elit malesuada malesuada. Suspendisse viverra ipsum libero, vel pharetra sem maximus sed. Nunc vel est fringilla, rutrum diam eu, egestas quam. Vivamus lobortis blandit velit, commodo finibus mauris. Quisque vel lacus ipsum. Pellentesque quis nulla ipsum.</p>
+<p>Aenean in hendrerit quam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam tincidunt vehicula dignissim. In quis aliquet lectus, ac vestibulum elit. Quisque a magna viverra quam viverra faucibus. Nulla ornare tortor at mollis viverra. Curabitur vel porta dui. Etiam ipsum elit, egestas eget lacus nec, laoreet iaculis lacus. In iaculis risus ac tincidunt viverra. Maecenas tempor iaculis odio quis aliquet.<br>
+Maecenas ac posuere turpis. Fusce est dui, dapibus sed odio eget, eleifend facilisis felis. Nam gravida varius enim, ornare tincidunt urna ullamcorper ut. Donec sit amet eros ac lacus placerat rutrum ut non dolor. Nulla tincidunt nunc massa, sed euismod dui feugiat vitae. Integer tempus risus rutrum tellus interdum, eu aliquet sapien rutrum. Nunc feugiat varius lacus sed laoreet. Integer euismod tellus nisi, id scelerisque sem sagittis eu. Suspendisse at orci vel neque varius tempor nec vitae odio. Integer elementum elementum fermentum. Morbi in turpis cursus, lacinia arcu et, semper orci.</p>
+</section>
+<section id="front-matter" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Front matter</h1>
+<p>Most Quarto’s authors and affiliations schemes <span class="citation" data-cites="quarto-funding"><a href="#ref-quarto-funding" role="doc-biblioref">[5]</a></span> are supported in the YAML front matter to render authors as requested by IEEE journals in PDF and HTML outputs. When provided to an author, the <code>note</code> entry is rendered as a <code>\thanks{}</code> in <code>PDF</code> output (ignored in <code>HTML</code> output). Additionally, the reader may add to an author a <code>photo: path/to/photograph.png</code> with a <code>bio</code> metadata entries to generate a <code>IEEEbiography</code>, while a sole <code>bio</code> generates a <code>IEEEbiographynophoto</code> (these features is used both in <code>PDF</code> and <code>HTML</code> outputs).<br>
+The <code>funding</code> entry is also used in both PDF and HTML outputs <span class="citation" data-cites="quarto-funding"><a href="#ref-quarto-funding" role="doc-biblioref">[5]</a></span>. At version v1.1.1, only the <code>funding.statement</code> is used. Similarly, <code>citation</code> entry is supported to make the HTML output a “<em>citeable article</em>”&nbsp;<span class="citation" data-cites="quarto-citation"><a href="#ref-quarto-citation" role="doc-biblioref">[4]</a></span>.</p>
+</section>
+<section id="some-common-elements" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Some Common Elements</h1>
+<section id="sections-and-subsections" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="sections-and-subsections"><span class="header-section-number">5.1</span> Sections and Subsections</h2>
+<p>As stated in the <code>IEEEtran</code> template enumeration of section headings is desirable, but not required. When numbered, it should be consistent throughout the article, that is, all headings and all levels of section headings in the article should be enumerated. Primary headings are designated with Roman numerals, secondary with capital letters, tertiary with Arabic numbers; and quaternary with lowercase letters. References and Acknowledgment headings are unlike all other section headings in text. They are never enumerated. They are simply primary headings without labels, regardless of whether the other headings in the article are enumerated.</p>
+<p>The following <a href="#sec-Markdown" class="quarto-xref">Section&nbsp;5.2</a> shows some basic usage and capabilities of <code>quarto-ieee</code>.</p>
+</section>
+<section id="sec-Markdown" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="sec-Markdown"><span class="header-section-number">5.2</span> Markdown basics</h2>
+<p>The reader can easily find many documentations on how to write using the (Pandoc/Quarto) Markdown syntax. The <code>quarto-ieee</code> template relies mainly on the Markdown markup supported by Quarto <span class="citation" data-cites="quarto-markdown"><a href="#ref-quarto-markdown" role="doc-biblioref">[6]</a></span>, which is build based on Pandoc <span class="citation" data-cites="MacFarlane_Pandoc Allaire_Quarto_2022"><a href="#ref-MacFarlane_Pandoc" role="doc-biblioref">[2]</a>, <a href="#ref-Allaire_Quarto_2022" role="doc-biblioref">[3]</a></span>. Below are some basic examples of usage of the Markdown markup (to save space, it is better to consult the original Quarto document <code>template.qmd</code>).</p>
+<section id="display-equations" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="display-equations"><span class="header-section-number">5.2.1</span> Display equations</h3>
+<p>To write equations use <code>$</code> delimiters for inline formula or <code>$$</code> for block one. To number the equations, it is recommended to use classic equation environments provided by <span class="math inline">\(\LaTeX\)</span> and to use <code>\eqref{}</code> (or <code>\ref{}</code>) for cross-referencing. For example: <span class="math display">\[\begin{equation}\label{eq:1}
+{{\chi}_a}=\text{diag}\left(\frac{{\chi}}{1+n_a{\chi}},\frac{{\chi}}{1+n_b{\chi}},\frac{{\chi}}{1+n_b{\chi}}\right),
+\end{equation}\]</span> <span class="math display">\[\begin{align}
+a &amp; = b + c \label{eq:2} \\
+c &amp; = d + e \label{eq:3}
+\end{align}\]</span></p>
+<p><span class="math display">\[\begin{equation}\label{eq:4}
+\begin{cases}
+    1&amp;=n_a+2n_b \\
+    n_a&amp;=\dfrac{1-{\varepsilon}^2}{2{\varepsilon}^3}\left(\log\left(\dfrac{1+{\varepsilon}}{1-{\varepsilon}}\right)-2{\varepsilon}\right)
+\end{cases}
+\end{equation}\]</span> The above equation is cross-referenced as <span class="math inline">\(\eqref{eq:1}\)</span>, <span class="math inline">\(\eqref{eq:2}\)</span>, <span class="math inline">\(\eqref{eq:3}\)</span> and <span class="math inline">\(\eqref{eq:4}\)</span>.</p>
+<p>For now, avoid using the Quarto cross-references that use of <code>$$ $$</code> with <code>#eq-</code> label. It works properly only for PDF output, but there are some issues with HTML<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> output.</p>
+<div class="remark proof">
+<p><span class="proof-title"><em>Remark</em>. </span><code>quarto-ieee</code> template also supports the <a href="https://ctan.org/pkg/mhchem"><code>mhchem</code></a> (for chemical equation) and <a href="https://ctan.org/pkg/physics"><code>physics</code></a> (for flexible macros for typesetting equations) <span class="math inline">\(\LaTeX\)</span> packages and <a href="https://docs.mathjax.org/en/latest/input/tex/extensions/index.html">Mathjax extensions</a>.</p>
+</div>
+</section>
+<section id="theorems-proofs-and-remarks" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="theorems-proofs-and-remarks"><span class="header-section-number">5.2.2</span> Theorems, Proofs and Remarks</h3>
+<p>To include a reference-able theorem, create a div with a <code>#thm-</code> label. A theorem name is specified via the first heading in the block. For example:</p>
+<div id="thm-line" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 1 (Line) </strong></span>The equation of any straight line, called a linear equation, can be written as:</p>
+<p><span class="math display">\[
+y = mx + b
+\]</span></p>
+</div>
+<p>The theorem is cross-referenced as <a href="#thm-line" class="quarto-xref">Theorem&nbsp;1</a>.</p>
+<p>There are a number of theorem variations supported by <a href="https://quarto.org/docs/authoring/cross-references.html#theorems-and-proofs">Quarto</a>, each with their own label prefix:</p>
+<ul>
+<li><code>#thm-</code> for Theorem;</li>
+<li><code>#lem-</code> for Lemma;</li>
+<li><code>#cor-</code> for Corollary</li>
+<li><code>#prp-</code> for Proposition;</li>
+<li><code>#cnj-</code> for Conjecture;</li>
+<li><code>#def-</code> for Definition;</li>
+<li><code>#exm-</code> for Example;</li>
+<li><code>#exr-</code> for Exercise.</li>
+</ul>
+<p>The <code>proof</code>, <code>remark</code> and <code>solution</code> environments generally receive similar typesetting as theorems. However they are not numbered (and therefore cannot be cross-referenced). To create these environments just use them as the class name of a div such as:</p>
+<div class="solution proof">
+<p><span class="proof-title"><em>Solution</em> (The solution). </span>An example of solution environment.</p>
+</div>
+</section>
+<section id="figures" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="figures"><span class="header-section-number">5.2.3</span> Figures</h3>
+<p>An image with nonempty alt text will be rendered as a figure with a caption with Pandoc and Quarto. Quarto includes a different features to simplify the use of figures and subfigures. Here, it is recommended to use div block with <code>#fig-</code> label to embed your Figures.</p>
+<div id="fig-1" class="quarto-figure quarto-figure-center anchored" width="30%">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="fig1.png" class="img-fluid figure-img" style="width:30.0%">
+</div>
+<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Fig.&nbsp;1: An example of figure.
+</figcaption>
+</figure>
+</div>
+<div id="fig-2" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-2" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-2a" class="quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-2a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="fig1.png" id="fig-2a" class="img-fluid figure-img" data-ref-parent="fig-2">
+</div>
+<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-2a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a)
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-2" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-2b" class="quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-2b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="fig1.png" id="fig-2b" class="img-fluid figure-img" data-ref-parent="fig-2">
+</div>
+<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-2b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Fig.&nbsp;2: An example with sub-figure.
+</figcaption>
+</figure>
+</div>
+<p>The figures is cross-referenced as <a href="#fig-2" class="quarto-xref">Fig.&nbsp;2</a> and even the sub-figures as <a href="#fig-2b" class="quarto-xref">Fig.&nbsp;2 (b)</a>.</p>
+</section>
+<section id="sec-tables" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="sec-tables"><span class="header-section-number">5.2.4</span> Tables</h3>
+<p>Similarly, many kind of tables may be used with Pandoc and Quarto. The latter also includes different features to simplify the table output. To make tables cross-referenceable use a label with a <code>#tbl-</code> prefix.<br>
+However, it is recommended to avoid using the commonly used single Markdown table known as a ‘pipe table’. In fact, Pandoc Markdown uses the <span class="math inline">\(\LaTeX\)</span> <code>longtable</code> package, which does not support the two-column mode, which is required for most <code>IEEEtran</code> journals. <code>quarto-ieee</code> uses a hack to temporarily switch to one-column mode. However, this hack may break the page layout. To overcome this issue, a basic way is to use code cells (as for <a href="#tbl-other" class="quarto-xref">Table&nbsp;2</a>). Quarto is a multi-language and it uses <code>Knitr</code> to execute <code>R</code> code and can execute Python code blocks within Markdown.</p>
+<div id="tbl-panel" class="quarto-layout-panel anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="table quarto-float-caption quarto-float-tbl" id="tbl-panel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Main Caption
+</figcaption>
+<div aria-describedby="tbl-panel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-panel" style="flex-basis: 50.0%;justify-content: center;">
+<div id="tbl-first" class="anchored">
+<figure class="quarto-float quarto-subfloat-tbl figure">
+<figcaption class="table quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-first-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) First Table
+</figcaption>
+<div aria-describedby="tbl-first-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Col1</th>
+<th style="text-align: left;">Col2</th>
+<th style="text-align: left;">Col3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: left;">C</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">G</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">G</td>
+<td style="text-align: left;">G</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-panel" style="flex-basis: 50.0%;justify-content: center;">
+<div id="tbl-second" class="anchored">
+<figure class="quarto-float quarto-subfloat-tbl figure">
+<figcaption class="table quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-second-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Second Table
+</figcaption>
+<div aria-describedby="tbl-second-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Col1</th>
+<th style="text-align: left;">Col2</th>
+<th style="text-align: left;">Col3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: left;">C</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">G</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">G</td>
+<td style="text-align: left;">G</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</figure>
+</div>
+<p>The figures is cross-referenced as <a href="#tbl-panel" class="quarto-xref">Table&nbsp;1</a> for details, especially <a href="#tbl-second" class="quarto-xref">Table&nbsp;1 (b)</a>. There is also <a href="#tbl-other" class="quarto-xref">Table&nbsp;2</a>.</p>
+<div class="cell" data-tbl.env="tabular">
+<div id="tbl-other" class="cell anchored" data-tbl.env="tabular">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="table quarto-float-caption quarto-float-tbl" id="tbl-other-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: A table
+</figcaption>
+<div aria-describedby="tbl-other-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Col1</th>
+<th style="text-align: left;">Col2</th>
+<th style="text-align: left;">Col3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">G</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B</td>
+<td style="text-align: left;">E</td>
+<td style="text-align: left;">H</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">I</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+</section>
+<section id="bibliography" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="bibliography"><span class="header-section-number">5.3</span> Bibliography</h2>
+<p>IEEE journal should normally use IEEEtran<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> <span style="font-variant: small-caps;">Bib</span><span style="letter-spacing:-2px;">T</span><sub style="font-size: inherit; letter-spacing:-1px;">E</sub>X style. Nevertheless, Pandoc and Quarto do support <span style="font-variant: small-caps;">Bib</span><span style="letter-spacing:-2px;">T</span><sub style="font-size: inherit; letter-spacing:-1px;">E</sub>X with natbib or biblatex. However, neither is officially recommended for normal IEEE use. For this reason, <code>quarto-ieee</code> uses <code>citeproc</code> with the <code>ieee</code> CSL style sheet.</p>
+</section>
+</section>
+<section id="conclusions" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Conclusions</h1>
+<p>The conclusion goes here.</p>
+</section>
+<section id="acknowledgment" class="level1 unnumbered">
+<h1 class="unnumbered">Acknowledgment</h1>
+<p>This should be a simple paragraph before the References to thank those individuals and institutions who have supported your work on this article.</p>
+<p><span class="appendix" data-options="An Appendix"></span></p>
+<p>Use <code>[]{.appendix options="An Appendix"}</code> markup if you have a single appendix. <code>IEEEtran</code> state that to do not use <code>\section{}</code> anymore after <code>\appendix</code>.</p>
+</section>
+
+</div>
+
+<div id="quarto-accordion" class="accordion d-none d-md-block" role="tablist">
+    <div class="accordion-item container" id="">
+    <div class="accordion-header d-flex justify-content-between" id="heading-author" role="tab">
+      <button id="authors" class="accordion-button p-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-authors" aria-expanded="false" aria-controls="collapse-authors">Authors</button>
+    </div>
+    <div id="collapse-authors" class="accordion-body collapse" aria-labelledby="heading-authors" data-bs-parent="#quarto-accordion" role="tabpanel">
+          <div class="accordion-authors container">
+      <div class="author-card"><div class="grid gap-0">
+                <div class="author-photo g-col-3 pe-3">
+          <img src="david-folio.png" alt="Author image of David Folio">
+        </div>
+        <div class="g-col-9">
+          <div><span class="author-info"><a href="https://dfolio.fr/" title="INSA Centre Val de Loire, Laboratoire Prisme, Unknown affiliation, ">David Folio</a><a href="https://orcid.org/0000-0001-9430-6091" class="quarto-title-author-orcid px-1" target="orcid.widget" rel="me noopener noreferrer"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width: 1em; margin-inline-start: 0.5em" alt="ORCID iD icon"></a></span></div>
+          <div>Laboratoire Prisme, INSA Centre Val de Loire, Bourges, 18800 France, Unknown affiliation</div>
+        </div>
+              </div>
+      <div><p>Use <code>IEEEbiography</code> with figure as option and the author name as the argument followed by the biography text.</p></div>
+      </div>
+      </div>
+           <div class="accordion-authors container">
+      <div class="author-card"><div class="grid gap-0">
+                <div class="g-col-12">
+          <div><span class="author-info">John Doe</span></div>
+          <div>Anonymous University</div>
+        </div>
+              </div>
+      <div><p>Use <code>IEEEbiographynophoto</code> and the author name as the argument followed by the biography text.</p></div>
+      </div>
+      </div>
+         </div>
+  </div>
+  
+    <div class="accordion-item container">
+    <div class="accordion-header d-flex justify-content-between" id="heading-references" role="tab">
+      <button id="authors" class="accordion-button p-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-references" aria-expanded="false" aria-controls="collapse-references">References</button>
+    </div>
+    <div id="collapse-references" class="accordion-body collapse" aria-labelledby="heading-references" data-bs-parent="#quarto-accordion" role="tabpanel">
+      <section id="references" class="accordion-references">
+        <div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+        <div id="ref-mittelbach2023latex" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[1] </div><div class="csl-right-inline">F. Mittelbach and U. Fischer, <em>The <span>LaTeX</span> companion</em>, 3rd ed. <span>Addison Wesley Professional</span>, 2023. </div>
+        </div>
+        <div id="ref-MacFarlane_Pandoc" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[2] </div><div class="csl-right-inline">J. MacFarlane, A. Krewinkel, and J. Rosenthal, <span>“<span>Pandoc</span>.”</span> [Online]. Available: <a href="https://github.com/jgm/pandoc">https://github.com/jgm/pandoc</a></div>
+        </div>
+        <div id="ref-Allaire_Quarto_2022" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[3] </div><div class="csl-right-inline">J. J. Allaire, C. Teague, C. Scheidegger, Y. Xie, and C. Dervieux, <span>“<span>Quarto</span>.”</span> Jan-2022 [Online]. Available: <a href="https://github.com/quarto-dev/quarto-cli">https://github.com/quarto-dev/quarto-cli</a></div>
+        </div>
+        <div id="ref-quarto-citation" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[4] </div><div class="csl-right-inline"><span>“Quarto - <span>Creating Citeable Articles</span>.”</span> [Online]. Available: <a href="https://quarto.org/docs/authoring/create-citeable-articles.html">https://quarto.org/docs/authoring/create-citeable-articles.html</a>. [Accessed: 25-Oct-2023]</div>
+        </div>
+        <div id="ref-quarto-funding" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[5] </div><div class="csl-right-inline"><span>“Quarto - <span>Front Matter</span>.”</span> [Online]. Available: <a href="https://quarto.org/docs/authoring/front-matter.html#funding">https://quarto.org/docs/authoring/front-matter.html#funding</a>. [Accessed: 25-Oct-2023]</div>
+        </div>
+        <div id="ref-quarto-markdown" class="csl-entry" role="listitem">
+        <div class="csl-left-margin">[6] </div><div class="csl-right-inline"><span>“Quarto - <span>Markdown Basics</span>.”</span> [Online]. Available: <a href="https://quarto.org/docs/authoring/markdown-basics">https://quarto.org/docs/authoring/markdown-basics</a>. [Accessed: 25-Oct-2023]</div>
+        </div>
+        </div>
+      </section>
+    </div>
+  </div>
+      <div class="accordion-item container">
+    <div class="accordion-header d-flex justify-content-between" id="heading-keywords" role="tab">
+      <button id="authors" class="accordion-button p-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-keywords" aria-expanded="false" aria-controls="collapse-keywords">Keywords</button>
+    </div>
+    <div id="collapse-keywords" class="accordion-body collapse" aria-labelledby="heading-keywords" data-bs-parent="#quarto-accordion" role="tabpanel">
+      <div class="accordion-keywords">
+        <strong>Author Keywords</strong>
+        <ul class="mt-3 p-0">
+                <li>IEEE, </li><li>IEEEtran, </li><li>journal, </li><li>Quarto, </li><li>Pandoc, </li>
+        <li>template</li>
+                </ul>
+      </div>
+    </div>
+  </div>
+  
+</div>
+</div>
+
+<div id="quarto-appendix" class="default"><aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>[“<em><a href="https://github.com/jgm/pandoc/issues/1023%3E">longtable not compatible with 2-column LaTeX documents</a></em>”,<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Go to the PR page: <a href="https://github.com/dfolio/quarto-ieee/pulls" class="uri">https://github.com/dfolio/quarto-ieee/pulls</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>See the issue here <a href="https://github.com/quarto-dev/quarto-cli/issues/2275" class="uri">https://github.com/quarto-dev/quarto-cli/issues/2275</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>IEEEtran BibTeX style support page is: <a href="http://www.michaelshell.org/tex/ieeetran/bibtex/" class="uri">http://www.michaelshell.org/tex/ieeetran/bibtex/</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@software{folio2023,
+  author = {Folio, David and Doe, John},
+  title = {A {Sample} {Article} {Using} `Quarto-Ieee` for {IEEE}
+    {Journal} and {Transactions}},
+  pages = {1-3},
+  date = {2023-06-23},
+  url = {https://github.com/dfolio/quarto-ieee},
+  langid = {en},
+  abstract = {This document describes the most common article elements
+    and how to use the `quarto-ieee` class with Pandoc/Quarto-Markdown
+    to produce files that are suitable for submission to IEEE journals.
+    `quarto-ieee` can produce conference, journal, and technical note
+    (correspondence) papers with a suitable choice of class options. It
+    intends to generate PDF and HTML outputs that closely mimick what
+    IEEE would generate.}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-folio2023" class="csl-entry quarto-appendix-citeas" role="listitem">
+<div class="">D.
+Folio and J. Doe, <span>“A Sample Article Using `quarto-ieee` for IEEE
+Journal and Transactions,”</span> <em>GitHUB</em>. pp. 1–3, 23-Jun-2023
+[Online]. Available: <a href="https://github.com/dfolio/quarto-ieee">https://github.com/dfolio/quarto-ieee</a></div>
+</div></div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        typesetMath(container);
+        return container.innerHTML
+      } else {
+        typesetMath(note);
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      typesetMath(note);
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
